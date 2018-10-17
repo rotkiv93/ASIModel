@@ -1,5 +1,6 @@
 package es.udc.lbd.asi.restexample.model.repository;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -18,8 +19,8 @@ public class InMemoryDB {
 
     public static AtomicLong idGenerator = new AtomicLong(0);
     
-    static Date date = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
-
+    static LocalDate date = LocalDate.of(1946, 9, 11);
+    
     static {
         users.put(idGenerator.addAndGet(1), new User(idGenerator.get(), "pepe"));
         users.put(idGenerator.addAndGet(1), new User(idGenerator.get(), "maría"));

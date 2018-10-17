@@ -1,5 +1,6 @@
 package es.udc.lbd.asi.restexample.model.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ public class Movie {
 	private Long id;
 	
 	private String productora;
-	private Date fecha_estreno;
+	private LocalDate fecha_estreno;
 	private String pais;
 	private Integer duracion;
 	private Integer ano_salida;
@@ -33,7 +34,7 @@ public class Movie {
 	public Movie(){	
 	}
 		
-	public Movie(Long id, String productora, Date fecha_estreno, String pais, Integer duracion, Integer ano_salida,
+	public Movie(Long id, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
 			String titulo, Boolean oculta, String sinopsis) {
 		super();
 		this.id = id;
@@ -65,11 +66,11 @@ public class Movie {
 	}
 
 	@Column(name="FECHA_ESTRENO", nullable = false)
-	public Date getFecha_estreno() {
+	public LocalDate getFecha_estreno() {
 		return fecha_estreno;
 	}
 
-	public void setFecha_estreno(Date fecha_estreno) {
+	public void setFecha_estreno(LocalDate fecha_estreno) {
 		this.fecha_estreno = fecha_estreno;
 	}
 
