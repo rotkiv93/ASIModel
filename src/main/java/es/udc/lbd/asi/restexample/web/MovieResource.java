@@ -20,7 +20,7 @@ import es.udc.lbd.asi.restexample.model.service.PostService;
 import es.udc.lbd.asi.restexample.web.exception.IdAndBodyNotMatchingOnUpdateException;
 
 @RestController
-@RequestMapping("/api/movie")
+@RequestMapping("/api/movies")
 public class MovieResource {
 
 	@Autowired
