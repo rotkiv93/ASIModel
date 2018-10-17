@@ -29,9 +29,7 @@ public class Movie {
 	private Boolean oculta;
 	private String sinopsis;
 	//private List<Actor> Actores;
-	//sdklajdlkasjdlkasjd
-	//kjslkajsdlkdj
-	
+
 	public Movie(){	
 	}
 		
@@ -66,7 +64,7 @@ public class Movie {
 		this.productora = productora;
 	}
 
-	@Column(name="FECHA_ESTREN", nullable = false)
+	@Column(name="FECHA_ESTRENO", nullable = false)
 	public Date getFecha_estreno() {
 		return fecha_estreno;
 	}
