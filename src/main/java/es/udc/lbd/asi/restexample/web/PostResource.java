@@ -41,9 +41,6 @@ public class PostResource {
 
     @PutMapping("/{id}")
     public Post update(@PathVariable Long id, @RequestBody Post post) throws IdAndBodyNotMatchingOnUpdateException {
-        if (id != post.getId()) {
-            throw new IdAndBodyNotMatchingOnUpdateException(Post.class);
-        }
         return postService.save(post);
     }
 

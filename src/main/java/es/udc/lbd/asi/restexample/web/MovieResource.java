@@ -44,7 +44,7 @@ public class MovieResource {
     @PutMapping("/{id}")
     public Movie update(@PathVariable Long id, @RequestBody Movie movie) throws IdAndBodyNotMatchingOnUpdateException {
         if (id != movie.getId()) {
-            //throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
+            throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
         }
         return movieService.save(movie);
     }
