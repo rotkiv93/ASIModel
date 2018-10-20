@@ -1,8 +1,12 @@
 package es.udc.lbd.asi.restexample.web;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.udc.lbd.asi.restexample.model.domain.Genre;
+import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.service.GenreService;
 import es.udc.lbd.asi.restexample.model.service.MovieService;
+import es.udc.lbd.asi.restexample.model.service.dto.GenreDTO;
 import es.udc.lbd.asi.restexample.web.exception.IdAndBodyNotMatchingOnUpdateException;
+import es.udc.lbd.asi.restexample.web.exception.RequestBodyNotValidException;
 
 @RestController
 @RequestMapping("/api/genres")
@@ -26,23 +33,29 @@ public class GenreResource {
     private GenreService genreService;
 
     @GetMapping
-    public List<Genre> findAll() {
+    public List<GenreDTO> findAll() {
         return genreService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Genre findOne(@PathVariable Long id) {
+    public GenreDTO findOne(@PathVariable Long id) {
         return genreService.findById(id);
     }
 
     @PostMapping
-    public Genre save(@RequestBody Genre genre) {
-        return genreService.save(genre);
+    public GenreDTO save(@RequestBody @Valid Genre genre, Errors errors) throws RequestBodyNotValidException {
+        errorHandler(errors);
+    	return genreService.save(genre);
     }
 
     @PutMapping("/{id}")
-    public Genre update(@PathVariable Long id, @RequestBody Genre genre){
-        return genreService.save(genre);
+    public GenreDTO update(@PathVariable Long id, @RequestBody @Valid Genre genre, Errors errors)
+    	throws IdAndBodyNotMatchingOnUpdateException, RequestBodyNotValidException {
+            errorHandler(errors);
+        	if (id != genre.getId()) {
+                throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
+            }
+            return genreService.save(genre);
     }
 
     @DeleteMapping("/{id}")
@@ -50,4 +63,13 @@ public class GenreResource {
         genreService.deleteById(id);
     }
 	
+    
+    private void errorHandler(Errors errors) throws RequestBodyNotValidException {
+        if (errors.hasErrors()) {
+            String errorMsg = errors.getFieldErrors().stream()
+                    .map(fe -> String.format("%s.%s %s", fe.getObjectName(), fe.getField(), fe.getDefaultMessage()))
+                    .collect(Collectors.joining("; "));
+            throw new RequestBodyNotValidException(errorMsg);
+        }
+    }
 }

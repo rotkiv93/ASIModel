@@ -10,7 +10,7 @@ public interface MovieDAO {
 
     Movie findById(Long id);
 
-    Movie save(Movie movie);
+    void save(Movie movie);
 
     void deleteById(Long id);
 }

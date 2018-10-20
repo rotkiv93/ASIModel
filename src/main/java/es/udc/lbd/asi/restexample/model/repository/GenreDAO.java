@@ -10,7 +10,7 @@ public interface GenreDAO {
 
 	    Genre findById(Long id);
 
-	    Genre save(Genre genre);
+	    void save(Genre genre);
 
 	    void deleteById(Long id);
 }

@@ -29,9 +29,8 @@ public class Genre {
 		return id;
 	}
 
-	public Genre(Long id, String nombre) {
+	public Genre(String nombre) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 	}
 

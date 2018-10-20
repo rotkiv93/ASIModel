@@ -34,10 +34,9 @@ public class Movie {
 	public Movie(){	
 	}
 		
-	public Movie(Long id, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
-			String titulo, Boolean oculta, String sinopsis) {
+	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
+			 Boolean oculta, String sinopsis) {
 		super();
-		this.id = id;
 		this.productora = productora;
 		this.fecha_estreno = fecha_estreno;
 		this.pais = pais;
