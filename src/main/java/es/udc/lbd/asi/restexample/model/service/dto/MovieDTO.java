@@ -12,7 +12,7 @@ public class MovieDTO {
 	private Long id;
 	@NotEmpty
 	private String productora;
-	@NotEmpty
+
 	private LocalDate fecha_estreno;
 	@NotEmpty
 	private String pais;
@@ -24,7 +24,6 @@ public class MovieDTO {
 	private String titulo;
 	@NotEmpty
 	private String sinopsis;
-	@NotNull
 	private GenreDTO genero;
 	
 	public MovieDTO(){
