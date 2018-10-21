@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.NotEmpty;
 
+import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public class MovieDTO {
@@ -23,6 +24,8 @@ public class MovieDTO {
 	@NotEmpty
 	private String sinopsis;
 	
+	private GenreDTO genero;
+	
 	public MovieDTO(){
 		
 	}
@@ -36,6 +39,7 @@ public class MovieDTO {
 		this.ano_salida = movie.getAno_salida();
 		this.titulo = movie.getTitulo();
 		this.sinopsis = movie.getSinopsis();
+		this.genero = new GenreDTO(movie.getGenero());
 	}
 
 	public Long getId() {
@@ -101,4 +105,14 @@ public class MovieDTO {
 	public void setSinopsis(String sinopsis) {
 		this.sinopsis = sinopsis;
 	}
+
+	public GenreDTO getGenero() {
+		return genero;
+	}
+
+	public void setGenero(GenreDTO genero) {
+		this.genero = genero;
+	}
+	
+	
 }

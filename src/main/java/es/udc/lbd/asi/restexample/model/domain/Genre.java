@@ -19,6 +19,8 @@ public class Genre {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="genreId")
 	@Column(name="ID_GENRE")
 	private Long id;
+	
+    @Column(name = "NOMBRE",unique = true)
 	private String nombre;
 	
 	public Genre(){

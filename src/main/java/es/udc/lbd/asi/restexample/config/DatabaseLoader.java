@@ -40,13 +40,14 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	    public void loadData() {
 	        
 	    	LocalDate date = LocalDate.of(1946, 9, 11);
-	        
-	    	movieService.save(new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros"));
-	    	movieService.save(new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer"));
-	    	movieService.save(new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso"));
-		    	
 	    	genreService.save(new Genre("Comedia"));
 	    	genreService.save(new Genre("Terror"));
+	    	
+	    	
+	    	movieService.save(new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L)));
+	    	movieService.save(new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L)));
+	    	movieService.save(new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L)));
+	    	
 	    }
 	
 }

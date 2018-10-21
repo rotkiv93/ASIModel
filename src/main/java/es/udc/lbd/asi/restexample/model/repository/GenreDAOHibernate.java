@@ -31,7 +31,4 @@ public class GenreDAOHibernate extends GenericDAOHibernate implements GenreDAO {
 	public void deleteById(Long id) {
 		getSession().delete(findById(id));
 	}
-
-	
-	
 }

@@ -5,9 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,6 +32,11 @@ public class Movie {
 	private Boolean oculta;
 	private String sinopsis;
 	//private List<Actor> Actores;
+	//private Director director;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Genre genero;
+
 
 	public Movie(){	
 	}
@@ -47,6 +54,14 @@ public class Movie {
 		this.sinopsis = sinopsis;
 	}
 
+	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
+			 Boolean oculta, String sinopsis, Genre genero) {
+		
+		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis);
+		this.genero = genero;
+	}
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -133,6 +148,15 @@ public class Movie {
 		this.sinopsis = sinopsis;
 	}
 	
+	
+	public Genre getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genre genero) {
+		this.genero = genero;
+	}
+
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", productora=" + productora + ", fecha_estreno=" + fecha_estreno + ", pais=" + pais
