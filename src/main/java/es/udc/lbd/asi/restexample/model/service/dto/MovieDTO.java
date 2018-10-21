@@ -3,6 +3,7 @@ package es.udc.lbd.asi.restexample.model.service.dto;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
@@ -23,7 +24,7 @@ public class MovieDTO {
 	private String titulo;
 	@NotEmpty
 	private String sinopsis;
-	
+	@NotNull
 	private GenreDTO genero;
 	
 	public MovieDTO(){
