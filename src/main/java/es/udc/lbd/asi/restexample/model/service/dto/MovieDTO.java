@@ -11,11 +11,13 @@ public class MovieDTO {
 	private Long id;
 	@NotEmpty
 	private String productora;
-
+	
 	private LocalDate fecha_estreno;
 	@NotEmpty
 	private String pais;
+	@NotNull
 	private Integer duracion;
+	@NotNull
 	private Integer ano_salida;
 	@NotEmpty
 	private String titulo;
