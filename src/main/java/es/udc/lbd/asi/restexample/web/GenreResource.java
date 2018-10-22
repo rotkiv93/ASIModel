@@ -55,7 +55,7 @@ public class GenreResource {
         	if (id != genre.getId()) {
                 throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
             }
-            return genreService.save(genre);
+            return genreService.update(genre);
     }
 
     @DeleteMapping("/{id}")

@@ -34,7 +34,7 @@ public class GenreService {
     }
     
     @Transactional(readOnly = false)
-    public GenreDTO update (GenreDTO genre){
+    public GenreDTO update (Genre genre){
     	Genre bdGenre = genreDAO.findById(genre.getId());
     	bdGenre.setNombre(genre.getNombre());
     	

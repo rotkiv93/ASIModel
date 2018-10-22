@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public class MovieDTO {
@@ -16,14 +15,13 @@ public class MovieDTO {
 	private LocalDate fecha_estreno;
 	@NotEmpty
 	private String pais;
-	@NotEmpty
 	private Integer duracion;
-	@NotEmpty
 	private Integer ano_salida;
 	@NotEmpty
 	private String titulo;
 	@NotEmpty
 	private String sinopsis;
+	@NotNull
 	private GenreDTO genero;
 	
 	public MovieDTO(){
