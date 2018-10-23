@@ -18,13 +18,13 @@ public class Actor {
 	@Column(name="ID_ACTOR")
 	private Long id;
 	
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE", nullable = false)
 	private String nombre;
     
-    @Column(name = "APELLIDO1")
+    @Column(name = "APELLIDO1", nullable = false)
     private String apellido1;
     
-    @Column(name = "APELLIDO2")
+    @Column(name = "APELLIDO2", nullable = true)
     private String apellido2;
     
 
