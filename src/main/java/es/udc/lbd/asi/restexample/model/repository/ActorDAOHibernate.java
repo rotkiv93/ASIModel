@@ -2,9 +2,12 @@ package es.udc.lbd.asi.restexample.model.repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 
+@Repository
 public class ActorDAOHibernate extends GenericDAOHibernate implements ActorDAO {
 
 	@Override
