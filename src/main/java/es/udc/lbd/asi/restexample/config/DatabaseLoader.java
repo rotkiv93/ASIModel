@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Director;
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
 import es.udc.lbd.asi.restexample.model.repository.GenreDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
@@ -26,6 +28,9 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	   
 	    @Autowired
 	    private DirectorDAO directorService;
+	    
+	    @Autowired
+	    private ActorDAO actorService;
 	    
 	    @Autowired
 	    private DatabaseLoader databaseLoader;
@@ -52,6 +57,8 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	    	directorService.save(new Director("Alfred", "Hitchcock",""));
 	    	directorService.save(new Director("Martin", "Scorsese",""));
 	    	
+	    	actorService.save(new Actor("Arnold","Gromenahuer",null));
+	    	actorService.save(new Actor("Leonardo","Di","Caprio"));
 	    	
 	    	movieService.save(new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L)));
 	    	movieService.save(new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L)));
