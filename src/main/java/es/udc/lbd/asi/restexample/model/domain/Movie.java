@@ -32,7 +32,9 @@ public class Movie {
 	private Boolean oculta;
 	private String sinopsis;
 	//private List<Actor> Actores;
-	//private Director director;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Director director;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Genre genero;
@@ -59,6 +61,12 @@ public class Movie {
 		
 		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis);
 		this.genero = genero;
+	}
+	
+	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
+			 Boolean oculta, String sinopsis, Genre genero, Director director) {
+		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero);
+		this.director = director;
 	}
 
 	
@@ -155,6 +163,15 @@ public class Movie {
 
 	public void setGenero(Genre genero) {
 		this.genero = genero;
+	}
+
+	
+	public Director getDirector() {
+		return director;
+	}
+
+	public void setDirector(Director director) {
+		this.director = director;
 	}
 
 	@Override

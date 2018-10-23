@@ -27,15 +27,15 @@ public class Genre {
 		
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	public Genre(String nombre) {
 		super();
 		this.nombre = nombre;
 	}
-
+	
+	public Long getId() {
+		return id;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

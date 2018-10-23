@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Genre;
-import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 
 @Repository

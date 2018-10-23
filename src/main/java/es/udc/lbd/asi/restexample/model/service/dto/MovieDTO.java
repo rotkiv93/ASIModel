@@ -25,6 +25,9 @@ public class MovieDTO {
 	private String sinopsis;
 	@NotNull
 	private GenreDTO genero;
+	@NotNull
+	private DirectorDTO director;
+	
 	
 	public MovieDTO(){
 		
@@ -40,6 +43,7 @@ public class MovieDTO {
 		this.titulo = movie.getTitulo();
 		this.sinopsis = movie.getSinopsis();
 		this.genero = new GenreDTO(movie.getGenero());
+		this.director = new DirectorDTO(movie.getDirector());
 	}
 
 	public Long getId() {
@@ -113,6 +117,15 @@ public class MovieDTO {
 	public void setGenero(GenreDTO genero) {
 		this.genero = genero;
 	}
+
+	public DirectorDTO getDirector() {
+		return director;
+	}
+
+	public void setDirector(DirectorDTO director) {
+		this.director = director;
+	}
+	
 	
 	
 }
