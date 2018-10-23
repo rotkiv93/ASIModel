@@ -31,45 +31,45 @@ public class DirectorResource {
 
 	@Autowired
 	private DirectorService directorService;
-	
-	 @GetMapping
-	    public List<DirectorDTO> findAll() {
-	        return directorService.findAll();
-	    }
 
-	    @GetMapping("/{id}")
-	    public DirectorDTO findOne(@PathVariable Long id) {
-	        return directorService.findById(id);
-	    }
+	@GetMapping
+	public List<DirectorDTO> findAll() {
+		return directorService.findAll();
+	}
 
-	    @PostMapping
-	    public DirectorDTO save(@RequestBody @Valid Director director, Errors errors) throws RequestBodyNotValidException {
-	        errorHandler(errors);
-	    	return directorService.save(director);
-	    }
+	@GetMapping("/{id}")
+	public DirectorDTO findOne(@PathVariable Long id) {
+		return directorService.findById(id);
+	}
 
-	    @PutMapping("/{id}")
-	    public DirectorDTO update(@PathVariable Long id, @RequestBody @Valid Director director, Errors errors)
-	    	throws IdAndBodyNotMatchingOnUpdateException, RequestBodyNotValidException {
-	            errorHandler(errors);
-	        	if (id != director.getId()) {
-	                throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
-	            }
-	            return directorService.update(director);
-	    }
+	@PostMapping
+	public DirectorDTO save(@RequestBody @Valid Director director, Errors errors) throws RequestBodyNotValidException {
+		errorHandler(errors);
+		return directorService.save(director);
+	}
 
-	    @DeleteMapping("/{id}")
-	    public void delete(@RequestParam Long id) {
-	        directorService.deleteById(id);
-	    }
-		
-	    private void errorHandler(Errors errors) throws RequestBodyNotValidException {
-	        if (errors.hasErrors()) {
-	            String errorMsg = errors.getFieldErrors().stream()
-	                    .map(fe -> String.format("%s.%s %s", fe.getObjectName(), fe.getField(), fe.getDefaultMessage()))
-	                    .collect(Collectors.joining("; "));
-	            throw new RequestBodyNotValidException(errorMsg);
-	        }
-	    }
-	
+	@PutMapping("/{id}")
+	public DirectorDTO update(@PathVariable Long id, @RequestBody @Valid Director director, Errors errors)
+			throws IdAndBodyNotMatchingOnUpdateException, RequestBodyNotValidException {
+		errorHandler(errors);
+		if (id != director.getId()) {
+			throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
+		}
+		return directorService.update(director);
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@RequestParam Long id) {
+		directorService.deleteById(id);
+	}
+
+	private void errorHandler(Errors errors) throws RequestBodyNotValidException {
+		if (errors.hasErrors()) {
+			String errorMsg = errors.getFieldErrors().stream()
+					.map(fe -> String.format("%s.%s %s", fe.getObjectName(), fe.getField(), fe.getDefaultMessage()))
+					.collect(Collectors.joining("; "));
+			throw new RequestBodyNotValidException(errorMsg);
+		}
+	}
+
 }
