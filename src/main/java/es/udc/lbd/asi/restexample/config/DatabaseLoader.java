@@ -14,10 +14,14 @@ import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Director;
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieUser;
+import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
 import es.udc.lbd.asi.restexample.model.repository.GenreDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
+import es.udc.lbd.asi.restexample.model.repository.MovieUserDAO;
+import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 
 
 	@Configuration
@@ -33,6 +37,12 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	    
 	    @Autowired
 	    private ActorDAO actorService;
+	    
+	    @Autowired
+	    private MovieUserDAO movieUserService;
+	    
+	    @Autowired 
+	    private UserDAO userService;
 	    
 	    @Autowired
 	    private DatabaseLoader databaseLoader;
@@ -52,13 +62,19 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	    public void loadData() {
 	        
 	    	LocalDate date = LocalDate.of(1946, 9, 11);
+	    	
+	    	//CREATING GENRES
 	    	genreService.save(new Genre("Comedia"));
 	    	genreService.save(new Genre("Terror"));
 	    
+	    	
+	    	//CREATING DIRECTORS
 	    	directorService.save(new Director("Steven", "Spielberg",""));
 	    	directorService.save(new Director("Alfred", "Hitchcock",""));
 	    	directorService.save(new Director("Martin", "Scorsese",""));
 	    	
+	    	
+	    	//CREATING ACTORS
 	    	Actor actor1 = new Actor("Leonardo","Di","Caprio");
 	    	Actor actor2 = new Actor("Arnold","Gromenahuer",null);
 	    	Actor actor3 = new Actor("Al","Pa","Chino");
@@ -76,10 +92,30 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	    	actorService.save(actor2);
 	    	actorService.save(actor3);
 
-	    	movieService.save(new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L), actoresP1));
-	    	movieService.save(new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1));
-	    	movieService.save(new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2));
-	    		
+	    	
+	    	//CREATING USERS
+	    	User usuario1 = new User("Normal");
+	    	userService.save(usuario1);
+	    	User usuario2 = new User("Admin");
+	    	userService.save(usuario2);
+	    	User usuario3 = new User("Josete");
+	    	userService.save(usuario3);
+	    	
+	    	
+	    	//CREATING MOVIES
+	    	Movie pelicula1 = new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L), actoresP1);
+	    	movieService.save(pelicula1);
+
+	    	Movie pelicula2 = new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1);
+	    	movieService.save(pelicula2);
+	    	
+	    	Movie pelicula3 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula3);
+	    	
+	    	
+	    	//VOTING MOVIES
+	    	movieUserService.save(new MovieUser(null, 4, null, usuario3, pelicula3));
+	    	
 	    }
 	
 }

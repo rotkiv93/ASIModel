@@ -1,15 +1,29 @@
 package es.udc.lbd.asi.restexample.model.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class User {
+	
+	@Id
+	@SequenceGenerator(name="userId", sequenceName="id_user_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userId")
+	@Column(name="ID_USER")
     private Long id;
+	
+	@Column(name = "NOMBRE")
     private String name;
 
     public User() {
     }
 
-    public User(Long id, String name) {
+    public User(String name) {
         super();
-        this.id = id;
         this.name = name;
     }
 

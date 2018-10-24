@@ -37,10 +37,10 @@ public class Movie {
 	private String sinopsis;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Director director;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Genre genero;
 
 	@ManyToMany(fetch = FetchType.LAZY)
