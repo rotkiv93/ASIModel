@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table (name="USERS")
 public class User {
 	
 	@Id
@@ -16,7 +18,7 @@ public class User {
 	@Column(name="ID_USER")
     private Long id;
 	
-	@Column(name = "NOMBRE")
+	@Column(name = "NOMBRE", nullable = false)
     private String name;
 
     public User() {

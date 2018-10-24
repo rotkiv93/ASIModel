@@ -14,6 +14,7 @@ import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Director;
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
@@ -95,7 +96,7 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	//CREATING USERS
 	    	User usuario1 = new User("Normal");
-	    	userService.save(usuario1);
+	    	userService.save(new User("adas"));
 	    	User usuario2 = new User("Admin");
 	    	userService.save(usuario2);
 	    	User usuario3 = new User("Josete");
@@ -114,8 +115,14 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	
 	    	//VOTING MOVIES
-	    	movieUserService.save(new MovieUser(null, 4, null, usuario3, pelicula3));
+	    	/*movieUserService.save(new MovieUser(usuario1, pelicula1, 7, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(usuario1, pelicula2, 3, MovieEnum.Vista));
+
+	    	movieUserService.save(new MovieUser(usuario2, pelicula2, 5, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(usuario2, pelicula3, null, MovieEnum.Pendiente));
 	    	
+	    	movieUserService.save(new MovieUser(usuario3, pelicula3, 4, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(usuario3, pelicula1, null, MovieEnum.Pendiente));*/
 	    }
 	
 }

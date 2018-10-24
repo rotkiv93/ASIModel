@@ -3,8 +3,6 @@ package es.udc.lbd.asi.restexample.model.repository;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-
-import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 
@@ -25,7 +23,6 @@ public class UserDAOHibernate extends GenericDAOHibernate implements UserDAO {
 	@Override
 	public void save(User user) {
 		getSession().saveOrUpdate(user);
-		
 	}
 
 	@Override

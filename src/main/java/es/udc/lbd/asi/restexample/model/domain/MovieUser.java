@@ -8,11 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Check;
 
 @Entity
-@Check(constraints = "VALORACION >= 0 AND VALORACION <= 10")
+@Table (name="MOVIEUSER")
 public class MovieUser {
 	
 	@Id
@@ -37,9 +38,8 @@ public class MovieUser {
 		
 	}
 	
-	public MovieUser(Long id, Integer valoracion, MovieEnum estado, User usuario, Movie pelicula) {
+	public MovieUser(User usuario,  Movie pelicula, Integer valoracion, MovieEnum estado) {
 		super();
-		this.id = id;
 		this.valoracion = valoracion;
 		this.estado = estado;
 		this.usuario = usuario;
