@@ -15,7 +15,11 @@ public class DirectorDTO {
 	private String apellido1;
 	private String apellido2;
 
-
+	public DirectorDTO(){
+	
+	}
+	
+	
 	public DirectorDTO(Director director) {
 		this.id = director.getId();
 		this.nombre = director.getNombre();
