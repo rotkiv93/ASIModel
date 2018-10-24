@@ -1,6 +1,8 @@
 package es.udc.lbd.asi.restexample.config;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -57,12 +59,26 @@ import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 	    	directorService.save(new Director("Alfred", "Hitchcock",""));
 	    	directorService.save(new Director("Martin", "Scorsese",""));
 	    	
-	    	actorService.save(new Actor("Arnold","Gromenahuer",null));
-	    	actorService.save(new Actor("Leonardo","Di","Caprio"));
+	    	Actor actor1 = new Actor("Leonardo","Di","Caprio");
+	    	Actor actor2 = new Actor("Arnold","Gromenahuer",null);
+	    	Actor actor3 = new Actor("Al","Pa","Chino");
 	    	
-	    	movieService.save(new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L)));
-	    	movieService.save(new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L)));
-	    	movieService.save(new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L)));
+	    	Set <Actor> actoresP1 = new HashSet<>();
+	    	actoresP1.add(actor1);
+	    	actoresP1.add(actor2);
+	    	
+	    	Set <Actor> actoresP2 = new HashSet<>();
+	    	actoresP2.add(actor1);
+	    	actoresP2.add(actor2);
+	    	actoresP2.add(actor3);
+	    	
+	    	actorService.save(actor1);
+	    	actorService.save(actor2);
+	    	actorService.save(actor3);
+
+	    	movieService.save(new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L), actoresP1));
+	    	movieService.save(new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1));
+	    	movieService.save(new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2));
 	    		
 	    }
 	

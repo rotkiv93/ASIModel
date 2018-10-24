@@ -1,7 +1,8 @@
 package es.udc.lbd.asi.restexample.model.domain;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,7 +35,7 @@ public class Movie {
 	private String titulo;
 	private Boolean oculta;
 	private String sinopsis;
-	//private List<Actor> Actores;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Director director;
@@ -39,7 +43,14 @@ public class Movie {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Genre genero;
 
-
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "MOVIE_ACTOR",
+			joinColumns = {@JoinColumn(name = "movie_id")},
+			inverseJoinColumns = {@JoinColumn (name = "actor_id")}
+			)
+	private Set<Actor> actores = new HashSet<>();
+	
 	public Movie(){	
 	}
 		
@@ -68,8 +79,13 @@ public class Movie {
 		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero);
 		this.director = director;
 	}
-
 	
+	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
+			 Boolean oculta, String sinopsis, Genre genero, Director director, Set<Actor> actores) {
+		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero, director);
+		this.actores = actores;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -174,6 +190,16 @@ public class Movie {
 		this.director = director;
 	}
 
+	public Set<Actor> getActores() {
+		return actores;
+	}
+
+	public void setActores(Set<Actor> actores) {
+		this.actores = actores;
+	}
+
+
+	
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", productora=" + productora + ", fecha_estreno=" + fecha_estreno + ", pais=" + pais
