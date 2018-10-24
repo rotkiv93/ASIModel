@@ -40,7 +40,6 @@ public class MovieService {
           bdMovie.setOculta(false);
           bdMovie.setGenero(genreDAO.findById(movie.getGenero().getId()));
           bdMovie.setDirector(directorDAO.findById(movie.getDirector().getId()));
-          
           movieDAO.save(bdMovie);
           return new MovieDTO(bdMovie);
     }
@@ -55,6 +54,7 @@ public class MovieService {
         bdMovie.setDuracion(movie.getDuracion());
         bdMovie.setAno_salida(movie.getAno_salida());
         bdMovie.setSinopsis(movie.getSinopsis());
+        bdMovie.setOculta(movie.getOculta());
         bdMovie.setGenero(genreDAO.findById(movie.getGenero().getId()));
         bdMovie.setDirector(directorDAO.findById(movie.getDirector().getId()));
         

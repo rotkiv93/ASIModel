@@ -16,6 +16,8 @@ public class MovieDTO {
 	@NotEmpty
 	private String pais;
 	@NotNull
+	private Boolean oculta;
+	@NotNull
 	private Integer duracion;
 	@NotNull
 	private Integer ano_salida;
@@ -42,6 +44,7 @@ public class MovieDTO {
 		this.ano_salida = movie.getAno_salida();
 		this.titulo = movie.getTitulo();
 		this.sinopsis = movie.getSinopsis();
+		this.oculta = movie.getOculta();
 		this.genero = new GenreDTO(movie.getGenero());
 		this.director = new DirectorDTO(movie.getDirector());
 	}
@@ -125,7 +128,14 @@ public class MovieDTO {
 	public void setDirector(DirectorDTO director) {
 		this.director = director;
 	}
-	
+
+	public Boolean getOculta() {
+		return oculta;
+	}
+
+	public void setOculta(Boolean oculta) {
+		this.oculta = oculta;
+	}
 	
 	
 }
