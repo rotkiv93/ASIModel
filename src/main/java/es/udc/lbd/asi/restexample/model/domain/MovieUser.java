@@ -29,11 +29,11 @@ public class MovieUser {
 	@Column(name= "ESTADO", nullable = false)
 	private MovieEnum estado;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	private User usuario;
+	//@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	//private User usuario;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	private Movie pelicula;
+	//@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	//private Movie pelicula;
 
 	public MovieUser(){
 		
@@ -43,8 +43,8 @@ public class MovieUser {
 		super();
 		this.valoracion = valoracion;
 		this.estado = estado;
-		this.usuario = usuario;
-		this.pelicula = pelicula;
+		//this.usuario = usuario;
+		//this.pelicula = pelicula;
 	}
 	
 	public Long getId() {
@@ -66,6 +66,7 @@ public class MovieUser {
 		this.estado = estado;
 	}
 
+	/*
 	public User getUsuario() {
 		return usuario;
 	}
@@ -80,7 +81,7 @@ public class MovieUser {
 
 	public void setPelicula(Movie pelicula) {
 		this.pelicula = pelicula;
-	}
+	}*/
 	
 	
 }

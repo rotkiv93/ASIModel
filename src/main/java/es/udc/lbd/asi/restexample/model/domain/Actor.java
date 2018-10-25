@@ -3,6 +3,7 @@ package es.udc.lbd.asi.restexample.model.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Actor {
     @Column(name = "APELLIDO2", nullable = true)
     private String apellido2;
     
-    @ManyToMany(mappedBy = "actores")
+    @ManyToMany(mappedBy = "actores", cascade=CascadeType.REMOVE)
     private Set<Movie> movies = new HashSet<>();
 
 	public Actor() {

@@ -18,7 +18,7 @@ public class MovieDTO {
 	private LocalDate fecha_estreno;
 	@NotEmpty
 	private String pais;
-	@NotNull
+
 	private Boolean oculta;
 	@NotNull
 	private Integer duracion;
@@ -32,8 +32,8 @@ public class MovieDTO {
 	private GenreDTO genero;
 	@NotNull
 	private DirectorDTO director;
-	@NotNull
-	private Set<Actor> actores = new HashSet<>();
+
+	private Set<ActorDTO> actores = new HashSet<>();
 	
 	
 	public MovieDTO(){
@@ -53,10 +53,10 @@ public class MovieDTO {
 		this.genero = new GenreDTO(movie.getGenero());
 		this.director = new DirectorDTO(movie.getDirector());
 		
-		//esto probablemente haya que cambiarlo
-		Set<Actor> act = new HashSet<>();
-		act.addAll(movie.getActores());
-		this.actores = act;
+		Set<Actor> act = movie.getActores();
+		for(Actor a : act){
+			this.actores.add(new ActorDTO(a));
+		}
 	}
 
 	public Long getId() {
@@ -147,11 +147,11 @@ public class MovieDTO {
 		this.oculta = oculta;
 	}
 
-	public Set<Actor> getActores() {
+	public Set<ActorDTO> getActores() {
 		return actores;
 	}
 
-	public void setActores(Set<Actor> actores) {
+	public void setActores(Set<ActorDTO> actores) {
 		this.actores = actores;
 	}
 	
