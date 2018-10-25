@@ -1,10 +1,13 @@
 package es.udc.lbd.asi.restexample.model.service.dto;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public class MovieDTO {
@@ -29,6 +32,8 @@ public class MovieDTO {
 	private GenreDTO genero;
 	@NotNull
 	private DirectorDTO director;
+	@NotNull
+	private Set<Actor> actores = new HashSet<>();
 	
 	
 	public MovieDTO(){
@@ -47,6 +52,11 @@ public class MovieDTO {
 		this.oculta = movie.getOculta();
 		this.genero = new GenreDTO(movie.getGenero());
 		this.director = new DirectorDTO(movie.getDirector());
+		
+		//esto probablemente haya que cambiarlo
+		Set<Actor> act = new HashSet<>();
+		act.addAll(movie.getActores());
+		this.actores = act;
 	}
 
 	public Long getId() {
@@ -136,6 +146,13 @@ public class MovieDTO {
 	public void setOculta(Boolean oculta) {
 		this.oculta = oculta;
 	}
-	
+
+	public Set<Actor> getActores() {
+		return actores;
+	}
+
+	public void setActores(Set<Actor> actores) {
+		this.actores = actores;
+	}
 	
 }

@@ -1,9 +1,11 @@
 package es.udc.lbd.asi.restexample.model.repository;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
+import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 
@@ -29,4 +31,11 @@ public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 	public void deleteById(Long id) {
 		getSession().delete(findById(id));	
 	}
+
+	@Override
+	public Set<Actor> findAllActors(Long idMovie) {
+		return null;
+	}
+
+	
 }

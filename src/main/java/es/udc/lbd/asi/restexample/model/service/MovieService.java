@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
 import es.udc.lbd.asi.restexample.model.repository.GenreDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
@@ -25,6 +26,9 @@ public class MovieService {
     
     @Autowired
     private DirectorDAO directorDAO;
+    
+    @Autowired
+    private ActorDAO actorDAO;
 
     public List<MovieDTO> findAll() {
     	 return movieDAO.findAll().stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
@@ -40,6 +44,8 @@ public class MovieService {
           bdMovie.setOculta(false);
           bdMovie.setGenero(genreDAO.findById(movie.getGenero().getId()));
           bdMovie.setDirector(directorDAO.findById(movie.getDirector().getId()));
+          //bdMovie.setActores(actorDAO.findById(movie.getActores()));
+          
           movieDAO.save(bdMovie);
           return new MovieDTO(bdMovie);
     }
