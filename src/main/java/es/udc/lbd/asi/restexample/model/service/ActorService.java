@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
+import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 import es.udc.lbd.asi.restexample.model.service.dto.ActorDTO;
 import es.udc.lbd.asi.restexample.model.service.dto.MovieDTO;
 
@@ -21,6 +22,11 @@ public class ActorService {
 	
 	@Autowired
 	private ActorDAO actorDAO;
+	
+	@Autowired
+	private MovieDAO movieDAO;
+	
+	
 	
 	public List<ActorDTO> findAll() {
 		return actorDAO.findAll().stream().map(actor -> new ActorDTO(actor)).collect(Collectors.toList());
@@ -32,8 +38,14 @@ public class ActorService {
 	
 	@Transactional(readOnly = false)
 	public ActorDTO save(Actor actor) {
-		Actor bdActor = new Actor(actor.getNombre(), actor.getApellido1(), actor.getApellido2(), actor.getPeliculas());
+		Actor bdActor = new Actor(actor.getNombre(), actor.getApellido1(), actor.getApellido2());
 		
+		 Set<Movie> movies = new HashSet<>();
+         for(Movie a: actor.getPeliculas()){
+        	 movies.add(movieDAO.findById(a.getId()));              
+         }     
+         bdActor.setPeliculas(movies);
+	
 		actorDAO.save(bdActor);
 		return new ActorDTO(bdActor);
 	}

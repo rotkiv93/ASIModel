@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class Actor {
     @Column(name = "APELLIDO2", nullable = true)
     private String apellido2;
     
-    @ManyToMany(mappedBy = "actores", cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "actores", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Movie> peliculas = new HashSet<>();
 
 	public Actor() {

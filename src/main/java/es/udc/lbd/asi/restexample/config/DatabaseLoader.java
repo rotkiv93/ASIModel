@@ -96,7 +96,7 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	//CREATING USERS
 	    	User usuario1 = new User("Normal");
-	    	userService.save(new User("adas"));
+	    	userService.save(usuario1);
 	    	User usuario2 = new User("Admin");
 	    	userService.save(usuario2);
 	    	User usuario3 = new User("Josete");
@@ -123,6 +123,7 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	movieUserService.save(new MovieUser(usuario3, pelicula3, 4, MovieEnum.Vista));
 	    	movieUserService.save(new MovieUser(usuario3, pelicula1, null, MovieEnum.Pendiente));
+	    	
 	    }
 	
 }
