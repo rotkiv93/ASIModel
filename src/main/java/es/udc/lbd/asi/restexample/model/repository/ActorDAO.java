@@ -8,8 +8,6 @@ import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public interface ActorDAO {
 	List<Actor> findAll();
-
-	Set<Movie> findForMovie(Long idActor);
 	
     Actor findById(Long id);
 

@@ -31,11 +31,5 @@ public class ActorDAOHibernate extends GenericDAOHibernate implements ActorDAO {
 	public void deleteById(Long id) {
 		getSession().delete(findById(id));
 	}
-
-	@Override
-	public Set<Movie> findForMovie(Long idActor) {
-		//return (Set<Movie>) getSession().createQuery("from movie ma where ma.actor_id = :idActor").setParameter("idActor", idActor).list();	
-		return null;
-	}
 	
 }

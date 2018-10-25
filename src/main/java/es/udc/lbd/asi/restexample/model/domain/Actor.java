@@ -32,17 +32,26 @@ public class Actor {
     @Column(name = "APELLIDO2", nullable = true)
     private String apellido2;
     
-    @ManyToMany(mappedBy = "actores", cascade=CascadeType.REMOVE)
-    private Set<Movie> movies = new HashSet<>();
+    @ManyToMany(mappedBy = "actores", cascade=CascadeType.ALL)
+    private Set<Movie> peliculas = new HashSet<>();
 
 	public Actor() {
     }
     
-    public Actor(String nombre, String apellido1, String apellido2){
+	   public Actor(String nombre, String apellido1, String apellido2){
+	    	super();
+	    	this.nombre = nombre;
+	    	this.apellido1 = apellido1;
+	    	this.apellido2 = apellido2;
+	    }
+	
+	
+    public Actor(String nombre, String apellido1, String apellido2, Set<Movie> peliculas){
     	super();
     	this.nombre = nombre;
     	this.apellido1 = apellido1;
     	this.apellido2 = apellido2;
+    	this.peliculas = peliculas;
     }
     
 	public Long getId() {
@@ -76,12 +85,12 @@ public class Actor {
 		this.apellido2 = apellido2;
 	}
 
-	public Set<Movie> getMovies() {
-		return movies;
+	public Set<Movie> getPeliculas() {
+		return peliculas;
 	}
 
-	public void setMovies(Set<Movie> movies) {
-		this.movies = movies;
+	public void setPeliculas(Set<Movie> peliculas) {
+		this.peliculas = peliculas;
 	}
 
 }

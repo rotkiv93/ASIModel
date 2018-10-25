@@ -1,9 +1,13 @@
 package es.udc.lbd.asi.restexample.model.service.dto;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.NotEmpty;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
+import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public class ActorDTO {
 	private Long id;
@@ -12,6 +16,8 @@ public class ActorDTO {
 	@NotEmpty
 	private String apellido1;
 	private String apellido2;
+	
+	private Set<MovieDTO> peliculas = new HashSet<>();
 	
 	public ActorDTO() {
 		
@@ -22,6 +28,11 @@ public class ActorDTO {
 		this.nombre = actor.getNombre();
 		this.apellido1 = actor.getApellido1();
 		this.apellido2 = actor.getApellido2();
+		
+		Set<Movie> pel = new HashSet<>();
+		for(Movie p : pel){
+			this.peliculas.add(new MovieDTO(p));
+		}
 	}
 
 	public Long getId() {
@@ -55,4 +66,14 @@ public class ActorDTO {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
+
+	public Set<MovieDTO> getPeliculas() {
+		return peliculas;
+	}
+
+	public void setPeliculas(Set<MovieDTO> peliculas) {
+		this.peliculas = peliculas;
+	}
+	
+	
 }
