@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.validation.constraints.NotEmpty;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
-import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public class ActorDTO {
 	private Long id;
@@ -29,11 +28,6 @@ public class ActorDTO {
 		this.apellido1 = actor.getApellido1();
 		this.apellido2 = actor.getApellido2();
 		
-		
-		Set<Movie> pel = actor.getPeliculas();
-		for(Movie p : pel){
-			this.peliculas.add(new MovieDTO(p));
-		}
 	}
 
 	public Long getId() {

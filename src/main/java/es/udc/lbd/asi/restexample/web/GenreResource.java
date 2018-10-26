@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.service.GenreService;
-import es.udc.lbd.asi.restexample.model.service.MovieService;
 import es.udc.lbd.asi.restexample.model.service.dto.GenreDTO;
 import es.udc.lbd.asi.restexample.web.exception.IdAndBodyNotMatchingOnUpdateException;
 import es.udc.lbd.asi.restexample.web.exception.RequestBodyNotValidException;

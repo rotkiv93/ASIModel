@@ -53,11 +53,11 @@ public class MovieDTO {
 		this.genero = new GenreDTO(movie.getGenero());
 		this.director = new DirectorDTO(movie.getDirector());
 		
-		/*
+		
 		Set<Actor> act = movie.getActores();
 		for(Actor a : act){
 			this.actores.add(new ActorDTO(a));
-		}*/
+		}
 	}
 
 

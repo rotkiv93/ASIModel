@@ -1,9 +1,8 @@
 package es.udc.lbd.asi.restexample.model.repository;
 
 import java.util.List;
-import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
@@ -25,12 +24,41 @@ public class ActorDAOHibernate extends GenericDAOHibernate implements ActorDAO {
 
 	@Override
 	public void save(Actor actor) {
-		getSession().saveOrUpdate(actor);
+		Session s = getSession(); 
+		
+		try {
+			//se añade la pelicula a las listas de actores
+			for(Movie a : actor.getPeliculas()) {
+				Movie mov1 = (Movie) s.get(Movie.class, a.getId());
+				mov1.getActores().add(actor);
+				s.saveOrUpdate(mov1);
+			}
+			s.saveOrUpdate(actor);
+		} catch (Exception e){
+			
+		}
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		getSession().delete(findById(id));
+		Session s = getSession(); 
+		
+		try {
+			Actor a = (Actor) s.get(Actor.class, id);
+			
+			//se borran las listas de peliculas de actores
+			if (a !=null) {
+				for(Movie m : a.getPeliculas()) {
+					Movie mov1 = (Movie) s.get(Movie.class, m.getId());
+					mov1.getActores().remove(a);
+					s.saveOrUpdate(mov1);
+				}
+			}
+			//se borra la pelicula
+			s.delete(findById(id));
+		} catch (Exception e) {
+			
+		}
 	}
 	
 }

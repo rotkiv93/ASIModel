@@ -1,16 +1,12 @@
 package es.udc.lbd.asi.restexample.model.repository;
 
-import java.util.Iterator;
+
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.annotations.common.util.impl.Log;
 import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
-import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 

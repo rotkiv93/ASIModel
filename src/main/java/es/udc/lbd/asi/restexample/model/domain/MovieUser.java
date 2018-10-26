@@ -1,6 +1,5 @@
 package es.udc.lbd.asi.restexample.model.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,10 +27,10 @@ public class MovieUser {
 	@Column(name= "ESTADO", nullable = false)
 	private MovieEnum estado;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User usuario;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Movie pelicula;
 
 	public MovieUser(){

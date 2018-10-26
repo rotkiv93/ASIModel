@@ -14,8 +14,6 @@ import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Director;
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
-import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
-import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;

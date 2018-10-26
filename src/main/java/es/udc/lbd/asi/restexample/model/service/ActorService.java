@@ -14,7 +14,6 @@ import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 import es.udc.lbd.asi.restexample.model.service.dto.ActorDTO;
-import es.udc.lbd.asi.restexample.model.service.dto.MovieDTO;
 
 @Service
 @Transactional(readOnly = true, rollbackFor = Exception.class)

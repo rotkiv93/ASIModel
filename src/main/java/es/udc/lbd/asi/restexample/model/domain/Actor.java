@@ -33,7 +33,7 @@ public class Actor {
     @Column(name = "APELLIDO2", nullable = true)
     private String apellido2;
     
-    @ManyToMany(mappedBy = "actores", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "actores", fetch = FetchType.LAZY)
     private Set<Movie> peliculas = new HashSet<>();
 
 	public Actor() {
