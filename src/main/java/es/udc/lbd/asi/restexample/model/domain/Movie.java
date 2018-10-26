@@ -220,7 +220,8 @@ public class Movie {
 	public String toString() {
 		return "Movie [id=" + id + ", productora=" + productora + ", fecha_estreno=" + fecha_estreno + ", pais=" + pais
 				+ ", duracion=" + duracion + ", ano_salida=" + ano_salida + ", titulo=" + titulo + ", oculta=" + oculta
-				+ ", sinopsis=" + sinopsis + "]";
+				+ ", sinopsis=" + sinopsis + ", director=" + director + ", genero=" + genero + ", usuarios=" + usuarios
+				+ ", actores=" + actores + "]";
 	}
 
 }

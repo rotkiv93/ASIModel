@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieUser;
+import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 
 @Repository
@@ -34,10 +36,14 @@ public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 				act1.getPeliculas().add(movie);
 				s.saveOrUpdate(act1);
 			}
-			
-			
-			//se añaden a la lista de movieuser
-			
+		
+			//se añaden la pelicula a movieUser
+			for(MovieUser a : movie.getUsuarios()){
+				MovieUser mu1 = (MovieUser) s.get(MovieUser.class, a.getId());
+				
+				mu1.setPelicula(movie);	
+				s.saveOrUpdate(mu1);
+			}
 			
 			s.saveOrUpdate(movie);
 		} catch (Exception e){
@@ -59,11 +65,15 @@ public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 					act1.getPeliculas().remove(m);
 					s.saveOrUpdate(act1);
 				}
+				
+				for(MovieUser a : m.getUsuarios()) {
+					MovieUser mov1 = (MovieUser) s.get(MovieUser.class, a.getId());
+					mov1.setPelicula(null);
+					mov1.getUsuario().getPeliculas().remove(mov1);
+				
+					s.delete(mov1);
+				}
 			}
-			
-			//se borran de movieuser
-			
-			
 			
 			//se borra la pelicula
 			s.delete(findById(id));

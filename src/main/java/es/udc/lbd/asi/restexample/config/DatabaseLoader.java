@@ -14,6 +14,8 @@ import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Director;
 import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
+import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
@@ -113,7 +115,6 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	
 	    	//VOTING MOVIES
-	    	/*
 	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(1L), 7, MovieEnum.Vista));
 	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(2L), 3, MovieEnum.Vista));
 
@@ -122,7 +123,7 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(3L), 4, MovieEnum.Vista));
 	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));
-	    	*/
+	    	
 	    }
 	
 }

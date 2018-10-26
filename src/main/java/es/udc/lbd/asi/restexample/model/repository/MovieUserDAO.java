@@ -13,5 +13,4 @@ public interface MovieUserDAO {
     void save(MovieUser movieUser);
 
     void deleteById(Long id);
-    
 }
