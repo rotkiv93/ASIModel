@@ -1,10 +1,15 @@
 package es.udc.lbd.asi.restexample.model.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,6 +25,9 @@ public class User {
 	
 	@Column(name = "NOMBRE", nullable = false)
     private String name;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	private Set<MovieUser> peliculas = new HashSet<>();
 
     public User() {
     }
@@ -28,6 +36,12 @@ public class User {
         super();
         this.name = name;
     }
+    
+    public User(String name, Set<MovieUser> peliculas) {
+    	this(name);
+    	this.peliculas = peliculas;
+    }
+    
 
     public Long getId() {
         return id;
@@ -44,4 +58,14 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+	public Set<MovieUser> getPeliculas() {
+		return peliculas;
+	}
+
+	public void setPeliculas(Set<MovieUser> peliculas) {
+		this.peliculas = peliculas;
+	}
+    
+    
 }

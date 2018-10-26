@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -37,13 +38,15 @@ public class Movie {
 	private Boolean oculta;
 	private String sinopsis;
 	
-	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Director director;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Genre genero;
-
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	private Set<MovieUser> usuarios = new HashSet<>();
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "MOVIE_ACTOR",
@@ -52,7 +55,7 @@ public class Movie {
 			)
 	private Set<Actor> actores = new HashSet<>();
 	
-	public Movie(){	
+	public Movie(){
 	}
 		
 	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
@@ -87,6 +90,12 @@ public class Movie {
 		this.actores = actores;
 	}
 
+	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
+			 Boolean oculta, String sinopsis, Genre genero, Director director, Set<Actor> actores,Set<MovieUser> usuarios) {
+		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero, director, actores);
+		this.usuarios = usuarios;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -199,8 +208,15 @@ public class Movie {
 		this.actores = actores;
 	}
 
-
 	
+	public Set<MovieUser> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Set<MovieUser> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", productora=" + productora + ", fecha_estreno=" + fecha_estreno + ", pais=" + pais

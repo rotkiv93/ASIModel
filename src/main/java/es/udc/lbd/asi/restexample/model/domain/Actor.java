@@ -94,4 +94,10 @@ public class Actor {
 		this.peliculas = peliculas;
 	}
 
+	@Override
+	public String toString() {
+		return "Actor [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
+				+ ", peliculas=" + peliculas + "]";
+	}
+
 }

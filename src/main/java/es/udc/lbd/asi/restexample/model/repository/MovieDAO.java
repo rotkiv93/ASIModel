@@ -13,8 +13,6 @@ public interface MovieDAO {
     Movie findById(Long id);
 
     void save(Movie movie);
-
-    Set<Actor> findAllActors(Long idMovie);
     
     void deleteById(Long id);
 }

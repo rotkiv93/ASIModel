@@ -29,7 +29,8 @@ public class ActorDTO {
 		this.apellido1 = actor.getApellido1();
 		this.apellido2 = actor.getApellido2();
 		
-		Set<Movie> pel = new HashSet<>();
+		
+		Set<Movie> pel = actor.getPeliculas();
 		for(Movie p : pel){
 			this.peliculas.add(new MovieDTO(p));
 		}

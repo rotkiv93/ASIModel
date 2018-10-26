@@ -115,15 +115,16 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	
 	    	//VOTING MOVIES
-	    	movieUserService.save(new MovieUser(usuario1, pelicula1, 7, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(usuario1, pelicula2, 3, MovieEnum.Vista));
+	    	/*
+	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(1L), 7, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(2L), 3, MovieEnum.Vista));
 
-	    	movieUserService.save(new MovieUser(usuario2, pelicula2, 5, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(usuario2, pelicula3, null, MovieEnum.Pendiente));
+	    	movieUserService.save(new MovieUser(userService.findById(2L), movieService.findById(2L), 5, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(3L), null, MovieEnum.Pendiente));
 	    	
-	    	movieUserService.save(new MovieUser(usuario3, pelicula3, 4, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(usuario3, pelicula1, null, MovieEnum.Pendiente));
-	    	
+	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(3L), 4, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));
+	    	*/
 	    }
 	
 }
