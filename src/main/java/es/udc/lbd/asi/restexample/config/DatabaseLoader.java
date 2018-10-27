@@ -118,7 +118,12 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	movieService.save(pelicula1);
 	    	Movie pelicula2 = new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1);
 	    	movieService.save(pelicula2);
+<<<<<<< HEAD
 	    	Movie pelicula3 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+=======
+	    	
+	    	Movie pelicula3 = new Movie("Origen","THX" , date, "Spain", 245, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+>>>>>>> develop
 	    	movieService.save(pelicula3);
 	    	Movie pelicula4 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula4);
@@ -135,6 +140,20 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	Movie pelicula10 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula10);
 	    	
+	    	Movie pelicula4 = new Movie("Destino Final","THX" , date, "Spain", 130, 34, false, "This is a generic description",genreService.findById(2L),directorService.findById(1L), actoresP1);
+	    	movieService.save(pelicula4);
+	    	
+	    	Movie pelicula5 = new Movie("Jungla de Cristal","THX" , date, "USA", 145, 34, false, "This is a generic description",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula5);
+	    	
+	    	Movie pelicula6 = new Movie("Heroes","THX" , date, "USA", 250, 34, false, "This is a generic description",genreService.findById(2L),directorService.findById(1L), actoresP1);
+	    	movieService.save(pelicula6);
+	    	
+	    	Movie pelicula7 = new Movie("Batman: The Darknight Rises","THX" , date, "USA", 210, 34, false, "This is a generic description",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula7);
+	    	
+	    	Movie pelicula8 = new Movie("AyLmao","THX" , date, "Spain", 360, 34, false, "This is a generic description",genreService.findById(2L),directorService.findById(1L), actoresP1);
+	    	movieService.save(pelicula8);
 	    	
 	    	//VOTING MOVIES
 	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(1L), 7, MovieEnum.Vista));
