@@ -72,6 +72,6 @@ public class AccountResource {
 
     @PostMapping("/register")
     public void registerAccount(@Valid @RequestBody UserDTOPrivate account) throws UserLoginExistsException {
-        userService.registerUser(account.getLogin(), account.getPassword());
+        userService.registerUser(account.getLogin(), account.getPassword(), account.getEmail());
     }
 }

@@ -30,11 +30,11 @@ public class UserService {
         return userDAO.findAll().stream().map(user -> new UserDTOPublic(user)).collect(Collectors.toList());
     }
 
-    public void registerUser(String login, String password) throws UserLoginExistsException {
-        registerUser(login, password, false);
+    public void registerUser(String login, String password, String email) throws UserLoginExistsException {
+        registerUser(login, password,email, false);
     }
 
-    public void registerUser(String login, String password, boolean isAdmin) throws UserLoginExistsException {
+    public void registerUser(String login, String password,String email, boolean isAdmin) throws UserLoginExistsException {
         if (userDAO.findByLogin(login) != null) {
             throw new UserLoginExistsException("User login " + login + " already exists");
         }
@@ -44,6 +44,7 @@ public class UserService {
 
         user.setLogin(login);
         user.setPassword(encryptedPassword);
+        user.setEmail(email);
         user.setAuthority(UserAuthority.USER);
         if (isAdmin) {
             user.setAuthority(UserAuthority.ADMIN);

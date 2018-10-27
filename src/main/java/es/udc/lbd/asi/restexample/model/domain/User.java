@@ -25,6 +25,8 @@ public class User {
 	@Column(name="ID_USER")
     private Long id;
 	
+	private String email;
+	
 	 @Column(unique = true)
 	 private String login;
 
@@ -39,19 +41,29 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password, UserAuthority aut){
+    public User(String login, String password,String email, UserAuthority aut){
     	this.login = login;
     	this.password = password;
     	this.authority = aut;
+    	this.email = email;
     }
     
-    public User(String login, String password,UserAuthority aut, Set<MovieUser> peliculas) {
-    	this(login,password, aut);
+    
+    public User(String login, String password, String email,UserAuthority aut, Set<MovieUser> peliculas) {
+    	this(login,password, email,aut);
     	this.peliculas = peliculas;
     }
     
 
-    public Long getId() {
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Long getId() {
         return id;
     }
 

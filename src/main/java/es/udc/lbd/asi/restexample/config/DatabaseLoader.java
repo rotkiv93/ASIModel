@@ -18,8 +18,6 @@ import es.udc.lbd.asi.restexample.model.domain.Genre;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
-import es.udc.lbd.asi.restexample.model.domain.User;
-import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 import es.udc.lbd.asi.restexample.model.exception.UserLoginExistsException;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
@@ -109,9 +107,9 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 
 	    	
 	    	//CREATING USERS
-	    	userService.registerUser("pablo", "pablo", true);
-	    	userService.registerUser("jaime", "jaime", true);
-	    	userService.registerUser("josete", "josete", false);
+	    	userService.registerUser("pablo", "pablo","victorlamas@gmail.com", true);
+	    	userService.registerUser("jaime", "jaime","james@gmail.com", true);
+	    	userService.registerUser("josete", "josete","josete@gmail.com", false);
 	    	
 	    	
 	    	//CREATING MOVIES

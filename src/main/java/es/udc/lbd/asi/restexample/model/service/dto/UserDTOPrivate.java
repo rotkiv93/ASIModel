@@ -12,6 +12,7 @@ public class UserDTOPrivate {
     private String login;
     private String password;
     private String authority;
+    private String email;
 
 	@NotNull
 	private Set<MovieUserDTO> peliculas = new HashSet<>();
@@ -22,6 +23,7 @@ public class UserDTOPrivate {
     public UserDTOPrivate(User user) {
         this.id = user.getId();
         this.login = user.getLogin();
+        this.email = user.getEmail();
         // la contraseña no se rellena, nunca se envía al cliente
         this.authority = user.getAuthority().name();
     }
@@ -34,7 +36,23 @@ public class UserDTOPrivate {
         this.id = id;
     }
 
-    public String getLogin() {
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Set<MovieUserDTO> getPeliculas() {
+		return peliculas;
+	}
+
+	public void setPeliculas(Set<MovieUserDTO> peliculas) {
+		this.peliculas = peliculas;
+	}
+
+	public String getLogin() {
         return login;
     }
 
