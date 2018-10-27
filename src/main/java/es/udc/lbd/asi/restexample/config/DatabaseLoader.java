@@ -28,6 +28,8 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 import es.udc.lbd.asi.restexample.model.service.UserService;
 
 
+
+
 	@Configuration
 	public class DatabaseLoader {
 		 private final Logger logger = LoggerFactory.getLogger(DatabaseLoader.class);
@@ -141,8 +143,7 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(3L), null, MovieEnum.Pendiente));
 	    	
 	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(3L), 4, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));
-	    	
+	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));   	
 	    }
 	
 }
