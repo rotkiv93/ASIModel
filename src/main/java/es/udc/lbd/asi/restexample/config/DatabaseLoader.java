@@ -112,6 +112,27 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	
 	    	Movie pelicula3 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula3);
+
+	    	Movie pelicula4 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula4);
+
+	    	Movie pelicula5 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula5);
+
+	    	Movie pelicula6 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula6);
+
+	    	Movie pelicula7 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula7);
+
+	    	Movie pelicula8 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula8);
+
+	    	Movie pelicula9 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula9);
+
+	    	Movie pelicula10 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	movieService.save(pelicula10);
 	    	
 	    	
 	    	//VOTING MOVIES

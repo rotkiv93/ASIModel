@@ -45,6 +45,12 @@ public class MovieUser {
 		this.pelicula = pelicula;
 	}
 	
+	public MovieUser(Integer valoracion2, MovieEnum estado2) {
+		super();
+		this.valoracion = valoracion2;
+		this.estado = estado2;
+	}
+
 	public Long getId() {
 		return id;
 	}

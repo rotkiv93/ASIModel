@@ -16,7 +16,7 @@ public class MovieUserDAOHibernate extends GenericDAOHibernate implements MovieU
 
 	@Override
 	public List<MovieUser> findAll() {
-		return getSession().createQuery("from movieUser").list();	
+		return getSession().createQuery("from MovieUser").list();	
 	}
 
 	@Override
