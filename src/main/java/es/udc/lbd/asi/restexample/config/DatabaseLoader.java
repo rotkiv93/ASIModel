@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
+import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
+import es.udc.lbd.asi.restexample.model.exception.UserLoginExistsException;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
 import es.udc.lbd.asi.restexample.model.repository.GenreDAO;
@@ -27,6 +31,8 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 
 	@Configuration
 	public class DatabaseLoader {
+		 private final Logger logger = LoggerFactory.getLogger(DatabaseLoader.class);
+		
 	    @Autowired
 	    private MovieDAO movieService;
 
@@ -56,11 +62,15 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	     */
 	    @PostConstruct
 	    public void init() {
-	        databaseLoader.loadData();
+	        try {
+	            databaseLoader.loadData();
+	        } catch (UserLoginExistsException e) {
+	            logger.error(e.getMessage(), e);
+	        }
 	    }
 
 	    @Transactional(readOnly = false, rollbackFor = Exception.class)
-	    public void loadData() {
+	    public void loadData() throws UserLoginExistsException {
 	        
 	    	LocalDate date = LocalDate.of(1946, 9, 11);
 	    	
@@ -95,42 +105,33 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 
 	    	
 	    	//CREATING USERS
-	    	User usuario1 = new User("Normal");
+	    	User usuario1 = new User("pablo", "pablo", UserAuthority.ADMIN);
 	    	userService.save(usuario1);
-	    	User usuario2 = new User("Admin");
+	    	User usuario2 = new User("jaime","jaime", UserAuthority.ADMIN);
 	    	userService.save(usuario2);
-	    	User usuario3 = new User("Josete");
+	    	User usuario3 = new User("josete", "josete", UserAuthority.USER);
 	    	userService.save(usuario3);
 	    	
 	    	
 	    	//CREATING MOVIES
 	    	Movie pelicula1 = new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L), actoresP1);
 	    	movieService.save(pelicula1);
-
 	    	Movie pelicula2 = new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1);
 	    	movieService.save(pelicula2);
-	    	
 	    	Movie pelicula3 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula3);
-
 	    	Movie pelicula4 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula4);
-
 	    	Movie pelicula5 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula5);
-
 	    	Movie pelicula6 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula6);
-
 	    	Movie pelicula7 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula7);
-
 	    	Movie pelicula8 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula8);
-
 	    	Movie pelicula9 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula9);
-
 	    	Movie pelicula10 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula10);
 	    	

@@ -13,7 +13,7 @@ public class MovieUserDTO {
 	@NotNull
 	private MovieEnum estado;
 	@NotNull
-	private UserDTO usuario;
+	private UserDTOPrivate usuario;
 	@NotNull
 	private MovieDTO pelicula;
 	
@@ -25,7 +25,7 @@ public class MovieUserDTO {
 		this.id = movieUser.getId();
 		this.valoracion = movieUser.getValoracion();
 		this.estado = movieUser.getEstado();
-		this.usuario = new UserDTO(movieUser.getUsuario());
+		this.usuario = new UserDTOPrivate(movieUser.getUsuario());
 		this.pelicula = new MovieDTO(movieUser.getPelicula());
 	}
 
@@ -53,11 +53,11 @@ public class MovieUserDTO {
 		this.estado = estado;
 	}
 
-	public UserDTO getUsuario() {
+	public UserDTOPrivate getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(UserDTO usuario) {
+	public void setUsuario(UserDTOPrivate usuario) {
 		this.usuario = usuario;
 	}
 

@@ -63,4 +63,10 @@ public class UserDAOHibernate extends GenericDAOHibernate implements UserDAO {
 			
 		}
 	}
+
+	@Override
+	public User findByLogin(String login) {
+		return (User) getSession().createQuery("from User where login = :login").setParameter("login", login)
+                .uniqueResult();
+	}
 }

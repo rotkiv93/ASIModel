@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,8 +25,13 @@ public class User {
 	@Column(name="ID_USER")
     private Long id;
 	
-	@Column(name = "NOMBRE", nullable = false)
-    private String name;
+	 @Column(unique = true)
+	 private String login;
+
+	 private String password;
+
+	 @Enumerated(EnumType.STRING)
+	 private UserAuthority authority;
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	private Set<MovieUser> peliculas = new HashSet<>();
@@ -32,13 +39,14 @@ public class User {
     public User() {
     }
 
-    public User(String name) {
-        super();
-        this.name = name;
+    public User(String login, String password, UserAuthority aut){
+    	this.login = login;
+    	this.password = password;
+    	this.authority = aut;
     }
     
-    public User(String name, Set<MovieUser> peliculas) {
-    	this(name);
+    public User(String login, String password,UserAuthority aut, Set<MovieUser> peliculas) {
+    	this(login,password, aut);
     	this.peliculas = peliculas;
     }
     
@@ -51,13 +59,29 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public UserAuthority getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(UserAuthority authority) {
+		this.authority = authority;
+	}
 
 	public Set<MovieUser> getPeliculas() {
 		return peliculas;
