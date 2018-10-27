@@ -27,6 +27,7 @@ import es.udc.lbd.asi.restexample.model.repository.GenreDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieUserDAO;
 import es.udc.lbd.asi.restexample.model.repository.UserDAO;
+import es.udc.lbd.asi.restexample.model.service.UserService;
 
 
 	@Configuration
@@ -49,7 +50,10 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    private MovieUserDAO movieUserService;
 	    
 	    @Autowired 
-	    private UserDAO userService;
+	    private UserDAO userDAO;
+	    
+	    @Autowired
+	    private UserService userService;
 	    
 	    @Autowired
 	    private DatabaseLoader databaseLoader;
@@ -105,12 +109,9 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 
 	    	
 	    	//CREATING USERS
-	    	User usuario1 = new User("pablo", "pablo", UserAuthority.ADMIN);
-	    	userService.save(usuario1);
-	    	User usuario2 = new User("jaime","jaime", UserAuthority.ADMIN);
-	    	userService.save(usuario2);
-	    	User usuario3 = new User("josete", "josete", UserAuthority.USER);
-	    	userService.save(usuario3);
+	    	userService.registerUser("pablo", "pablo", true);
+	    	userService.registerUser("jaime", "jaime", true);
+	    	userService.registerUser("josete", "josete", false);
 	    	
 	    	
 	    	//CREATING MOVIES
@@ -135,14 +136,14 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    
 	    	
 	    	//VOTING MOVIES
-	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(1L), 7, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(userService.findById(1L), movieService.findById(2L), 3, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userDAO.findById(1L), movieService.findById(1L), 7, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userDAO.findById(1L), movieService.findById(2L), 3, MovieEnum.Vista));
 
-	    	movieUserService.save(new MovieUser(userService.findById(2L), movieService.findById(2L), 5, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(3L), null, MovieEnum.Pendiente));
+	    	movieUserService.save(new MovieUser(userDAO.findById(2L), movieService.findById(2L), 5, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(3L), null, MovieEnum.Pendiente));
 	    	
-	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(3L), 4, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(userService.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));
+	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(3L), 4, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));
 	    	
 	    }
 	
