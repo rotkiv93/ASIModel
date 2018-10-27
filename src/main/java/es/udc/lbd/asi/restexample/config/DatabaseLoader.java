@@ -83,8 +83,8 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 	    	directorService.save(new Director("Steven", "Spielberg",""));
 	    	directorService.save(new Director("Alfred", "Hitchcock",""));
 	    	directorService.save(new Director("Martin", "Scorsese",""));
-	    	
-	    	
+	    	directorService.save(new Director("Juan Antonio", "García","Bayona"));
+
 	    	//CREATING ACTORS
 	    	Actor actor1 = new Actor("Leonardo","Di","Caprio");
 	    	Actor actor2 = new Actor("Arnold","Gromenahuer",null);
