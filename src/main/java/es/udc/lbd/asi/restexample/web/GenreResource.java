@@ -25,7 +25,7 @@ import es.udc.lbd.asi.restexample.web.exception.IdAndBodyNotMatchingOnUpdateExce
 import es.udc.lbd.asi.restexample.web.exception.RequestBodyNotValidException;
 
 @RestController
-@RequestMapping("/api/genres")
+@RequestMapping("/api/genre")
 public class GenreResource {
 
 	@Autowired
