@@ -28,8 +28,6 @@ import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 import es.udc.lbd.asi.restexample.model.service.UserService;
 
 
-
-
 	@Configuration
 	public class DatabaseLoader {
 		 private final Logger logger = LoggerFactory.getLogger(DatabaseLoader.class);
@@ -77,6 +75,7 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    public void loadData() throws UserLoginExistsException {
 	        
 	    	LocalDate date = LocalDate.of(1946, 9, 11);
+	    	LocalDate hoy = LocalDate.now();
 	    	
 	    	//CREATING GENRES
 	    	genreService.save(new Genre("Comedia"));
@@ -111,7 +110,7 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	//CREATING USERS
 	    	userService.registerUser("pablo", "pablo","victorlamas@gmail.com", true);
 	    	userService.registerUser("jaime", "jaime","james@gmail.com", true);
-	    	userService.registerUser("josete", "josete","josete@gmail.com", false);
+	    	userService.registerUser("josete", "usuariodespamdecorreo","victorlamas93@gmail.com", false);
 	    	
 	    	
 	    	//CREATING MOVIES
@@ -121,9 +120,9 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	movieService.save(pelicula2);
 	    	Movie pelicula4 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula4);
-	    	Movie pelicula5 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	Movie pelicula5 = new Movie("PeliculaHoy","THX" , hoy, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula5);
-	    	Movie pelicula6 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	Movie pelicula6 = new Movie("Peliculahoy2n","THX" , hoy, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula6);
 	    	Movie pelicula7 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula7);
@@ -136,12 +135,16 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    
 	    	
 	    	//VOTING MOVIES
-	    	movieUserService.save(new MovieUser(userDAO.findById(1L), movieService.findById(1L), 7, MovieEnum.Vista));
+	    	movieUserService.save(new MovieUser(userDAO.findById(1L), movieService.findById(1L), null, MovieEnum.Pendiente));
 	    	movieUserService.save(new MovieUser(userDAO.findById(1L), movieService.findById(2L), 3, MovieEnum.Vista));
-
-	    	movieUserService.save(new MovieUser(userDAO.findById(2L), movieService.findById(2L), 5, MovieEnum.Vista));
-	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(3L), null, MovieEnum.Pendiente));
+	    	//movieUserService.save(new MovieUser(userDAO.findById(1L), movieService.findById(5L), 5, MovieEnum.Pendiente));
 	    	
+	    	movieUserService.save(new MovieUser(userDAO.findById(2L), movieService.findById(5L), 5, MovieEnum.Vista));
+	    	//movieUserService.save(new MovieUser(userDAO.findById(2L), movieService.findById(4L), null, MovieEnum.Pendiente));
+	    	//movieUserService.save(new MovieUser(userDAO.findById(2L), movieService.findById(3L), null, MovieEnum.Pendiente));
+	    	
+	    	
+	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(5L), null, MovieEnum.Pendiente));
 	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(3L), 4, MovieEnum.Vista));
 	    	movieUserService.save(new MovieUser(userDAO.findById(3L), movieService.findById(1L), null, MovieEnum.Pendiente));   	
 	    }

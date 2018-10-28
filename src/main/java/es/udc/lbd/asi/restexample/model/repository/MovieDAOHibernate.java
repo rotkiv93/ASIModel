@@ -1,7 +1,10 @@
 package es.udc.lbd.asi.restexample.model.repository;
 
 
+import java.time.LocalDate;
 import java.util.List;
+
+import javax.persistence.TemporalType;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -18,6 +21,11 @@ public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 	@Override
 	public List<Movie> findAll() {
 		return getSession().createQuery("from Movie").list();
+	}
+
+	@Override
+	public List<Movie> findAllInDate(LocalDate fecha) {
+		return getSession().createQuery("from Movie m where m.fecha_estreno = :fecha").setParameter("fecha", fecha, TemporalType.DATE).list();
 	}
 
 	@Override

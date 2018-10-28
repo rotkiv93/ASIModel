@@ -1,8 +1,10 @@
 package es.udc.lbd.asi.restexample.model.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
@@ -19,6 +21,15 @@ public class MovieUserDAOHibernate extends GenericDAOHibernate implements MovieU
 		return getSession().createQuery("from MovieUser").list();	
 	}
 
+
+	@Override
+	public List<MovieUser> findAllMovieUsersWithMoviePending(Movie movie) {
+		Query q = getSession().createQuery("from MovieUser m where m.pelicula = :movie and estado = 1");
+		q.setParameter("movie", movie);
+		return q.list();
+	}
+
+	
 	@Override
 	public MovieUser findById(Long id) {
 		return (MovieUser) getSession().createQuery("from MovieUser m where m.id = :id").setParameter("id", id).uniqueResult();
