@@ -12,7 +12,7 @@ public class GenreDAOHibernate extends GenericDAOHibernate implements GenreDAO {
 
 	@Override
 	public List<Genre> findAll() {
-		return getSession().createQuery("from Genre").list();	
+		return getSession().createQuery("from Genre g order by g.nombre").list();	
 	}
 
 	@Override
