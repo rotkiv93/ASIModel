@@ -78,6 +78,9 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	LocalDate hoy = LocalDate.now();
 	    	
 	    	//CREATING GENRES
+	    	genreService.save(new Genre("Romantico"));
+	    	genreService.save(new Genre("Drama"));
+	    	
 	    	genreService.save(new Genre("Comedia"));
 	    	genreService.save(new Genre("Terror"));
 	    
