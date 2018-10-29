@@ -111,9 +111,9 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 
 	    	
 	    	//CREATING USERS
-	    	userService.registerUser("pablo", "pablo","victorlamas@gmail.com", true);
+	    	userService.registerUser("pablo", "pablo","pablestal@gmail.com", true);
 	    	userService.registerUser("jaime", "jaime","james@gmail.com", true);
-	    	userService.registerUser("josete", "usuariodespamdecorreo","victorlamas93@gmail.com", false);
+	    	userService.registerUser("josete", "josete","victorlamas93@gmail.com", false);
 	    	
 	    	
 	    	//CREATING MOVIES
