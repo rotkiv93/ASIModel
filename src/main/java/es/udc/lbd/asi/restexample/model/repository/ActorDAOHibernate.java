@@ -14,7 +14,7 @@ public class ActorDAOHibernate extends GenericDAOHibernate implements ActorDAO {
 
 	@Override
 	public List<Actor> findAll() {
-		return getSession().createQuery("from Actor").list();
+		return getSession().createQuery("from Actor a order by a.nombre,a.apellido1,a.apellido2").list();
 	}
 
 	@Override
