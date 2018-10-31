@@ -12,7 +12,7 @@ public class DirectorDAOHibernate extends GenericDAOHibernate implements Directo
 
 	@Override
 	public List<Director> findAll() {
-		return getSession().createQuery("from Director d order by d.nombre").list();	
+		return getSession().createQuery("from Director d order by d.nombre,d.apellido1,d.apellido2").list();	
 	}
 
 	@Override
