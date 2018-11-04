@@ -41,11 +41,17 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password,String email, UserAuthority aut){
+    public User(String login, String password,String email){
     	this.login = login;
     	this.password = password;
-    	this.authority = aut;
     	this.email = email;
+    	this.authority = UserAuthority.USER;
+    }
+    
+    
+    public User(String login, String password,String email, UserAuthority aut){
+    	this(login,password,email);
+    	this.authority = aut;
     }
     
     

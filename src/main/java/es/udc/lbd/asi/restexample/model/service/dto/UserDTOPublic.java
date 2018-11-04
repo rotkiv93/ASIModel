@@ -1,10 +1,13 @@
 package es.udc.lbd.asi.restexample.model.service.dto;
 
 
+import javax.validation.constraints.NotEmpty;
+
 import es.udc.lbd.asi.restexample.model.domain.User;
 
 public class UserDTOPublic {
     private Long id;
+    @NotEmpty
     private String login;
 	
 

@@ -38,9 +38,9 @@ public class UserResource {
 	}
 	
 	@PostMapping
-	public void save(@RequestBody @Valid User user, Errors errors) throws RequestBodyNotValidException, UserLoginExistsException {
+	public UserDTOPrivate save(@RequestBody @Valid User user, Errors errors) throws RequestBodyNotValidException, UserLoginExistsException {
 		errorHandler(errors);
-		userService.registerUser(user.getLogin(), user.getPassword(), user.getEmail());
+		return userService.registerUser(user.getLogin(), user.getPassword(), user.getEmail());
 	}
 	 
 	 private void errorHandler(Errors errors) throws RequestBodyNotValidException {

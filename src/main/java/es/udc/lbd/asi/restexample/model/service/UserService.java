@@ -1,6 +1,8 @@
 package es.udc.lbd.asi.restexample.model.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 import es.udc.lbd.asi.restexample.model.exception.UserLoginExistsException;
@@ -30,27 +33,28 @@ public class UserService {
         return userDAO.findAll().stream().map(user -> new UserDTOPublic(user)).collect(Collectors.toList());
     }
 
-    public void registerUser(String login, String password, String email) throws UserLoginExistsException {
-        registerUser(login, password,email, false);
+    public UserDTOPrivate registerUser(String login, String password, String email) throws UserLoginExistsException {
+        return registerUser(login, password,email, false);
     }
 
-    public void registerUser(String login, String password,String email, boolean isAdmin) throws UserLoginExistsException {
+    public UserDTOPrivate registerUser(String login, String password,String email, boolean isAdmin) throws UserLoginExistsException {
         if (userDAO.findByLogin(login) != null) {
             throw new UserLoginExistsException("User login " + login + " already exists");
+           
         }
-
-        User user = new User();
+        
+        System.out.println("ENTRA EN EL SERVICIO con: "+ login+ password+email);
+        User user = new User(login,password,email);
         String encryptedPassword = passwordEncoder.encode(password);
-
-        user.setLogin(login);
         user.setPassword(encryptedPassword);
-        user.setEmail(email);
+
         user.setAuthority(UserAuthority.USER);
         if (isAdmin) {
             user.setAuthority(UserAuthority.ADMIN);
         }
 
         userDAO.save(user);
+        return new UserDTOPrivate(user);
     }
 
     public UserDTOPrivate getCurrentUserWithAuthority() {
