@@ -76,4 +76,10 @@ public class MovieUserDAOHibernate extends GenericDAOHibernate implements MovieU
 		
 	}
 
+
+	@Override
+	public MovieUser findByUserAndMovie(Movie movie, User user) {
+		return (MovieUser) getSession().createQuery("from MovieUser m where m.pelicula = :movie AND m.usuario = :user").setParameter("movie", movie).setParameter("user", user).uniqueResult();
+	}
+
 }

@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.service.MovieUserService;
+import es.udc.lbd.asi.restexample.model.service.dto.MovieDTO;
 import es.udc.lbd.asi.restexample.model.service.dto.MovieUserDTO;
+import es.udc.lbd.asi.restexample.model.service.dto.UserDTOPrivate;
 import es.udc.lbd.asi.restexample.web.exception.IdAndBodyNotMatchingOnUpdateException;
 import es.udc.lbd.asi.restexample.web.exception.RequestBodyNotValidException;
 
@@ -30,7 +33,8 @@ public class MovieUserResource {
 	@Autowired
     private MovieUserService movieUserService;
 
-    @GetMapping
+
+	//@GetMapping
     public List<MovieUserDTO> findAll() {
         return movieUserService.findAll();
     }
@@ -38,6 +42,11 @@ public class MovieUserResource {
     @GetMapping("/{id}")
     public MovieUserDTO findOne(@PathVariable Long id) {
         return movieUserService.findById(id);
+    }
+    
+    @GetMapping
+    public MovieUserDTO findByMovieAndUser(@RequestParam Long movieID, @RequestParam String userLogin){
+    	return movieUserService.findByMovieAndUSer(movieID, userLogin);
     }
 
     @PostMapping

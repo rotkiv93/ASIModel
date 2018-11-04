@@ -6,12 +6,13 @@ import java.util.Set;
 import javax.validation.constraints.NotNull;
 
 import es.udc.lbd.asi.restexample.model.domain.User;
+import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 
 public class UserDTOPrivate {
     private Long id;
     private String login;
     private String password;
-    private String authority;
+    private UserAuthority authority;
     private String email;
 
 	@NotNull
@@ -25,7 +26,7 @@ public class UserDTOPrivate {
         this.login = user.getLogin();
         this.email = user.getEmail();
         // la contraseña no se rellena, nunca se envía al cliente
-        this.authority = user.getAuthority().name();
+        this.authority = user.getAuthority();
     }
 
     public Long getId() {
@@ -68,11 +69,11 @@ public class UserDTOPrivate {
         this.password = password;
     }
 
-    public String getAuthority() {
-        return authority;
-    }
+	public UserAuthority getAuthority() {
+		return authority;
+	}
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
+	public void setAuthority(UserAuthority authority) {
+		this.authority = authority;
+	}
 }
