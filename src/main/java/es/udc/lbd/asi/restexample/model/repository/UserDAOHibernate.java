@@ -36,7 +36,6 @@ public class UserDAOHibernate extends GenericDAOHibernate implements UserDAO {
 				mu1.setUsuario(user);	
 				s.saveOrUpdate(mu1);
 			}
-		  	System.out.println("ENTRA EN EL DAO con:"+ user.getLogin()+ user.getEmail()+ user.getPassword());
 		  	s.saveOrUpdate(user);
 		}
 		catch (Exception e){

@@ -32,18 +32,19 @@ public class UserService {
     public List<UserDTOPublic> findAll() {
         return userDAO.findAll().stream().map(user -> new UserDTOPublic(user)).collect(Collectors.toList());
     }
-
+    
+    @Transactional(readOnly = false)
     public UserDTOPrivate registerUser(String login, String password, String email) throws UserLoginExistsException {
         return registerUser(login, password,email, false);
     }
 
+    @Transactional(readOnly = false)
     public UserDTOPrivate registerUser(String login, String password,String email, boolean isAdmin) throws UserLoginExistsException {
         if (userDAO.findByLogin(login) != null) {
             throw new UserLoginExistsException("User login " + login + " already exists");
            
         }
         
-        System.out.println("ENTRA EN EL SERVICIO con: "+ login+ password+email);
         User user = new User(login,password,email);
         String encryptedPassword = passwordEncoder.encode(password);
         user.setPassword(encryptedPassword);
