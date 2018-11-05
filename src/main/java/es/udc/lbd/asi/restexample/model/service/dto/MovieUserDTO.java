@@ -10,11 +10,11 @@ public class MovieUserDTO {
 	private Long id;
 	private Integer valoracion;
 	
-	@NotNull
+
 	private MovieEnum estado;
-	@NotNull
+	
 	private UserDTOPrivate usuario;
-	@NotNull
+
 	private MovieDTO pelicula;
 	
 	public MovieUserDTO(){

@@ -44,10 +44,14 @@ public class MovieUserService {
 	    
 	    
 	    public MovieUserDTO findByMovieAndUSer(Long movieID, String userLogin){
-	    	Movie movie = movieDAO.findById(movieID);
-	    	User user = userDAO.findByLogin(userLogin);
-	    	
-	    	return new MovieUserDTO(movieUserDAO.findByUserAndMovie(movie, user));
+	    		Movie movie = movieDAO.findById(movieID);
+		    	User user = userDAO.findByLogin(userLogin);
+		    	MovieUser pelicula = movieUserDAO.findByUserAndMovie(movie, user);
+		    	
+		    	if (pelicula != null)
+		    		return new MovieUserDTO(pelicula);
+		    	else
+		    		return null;
 	    }
 
 	    @Transactional(readOnly = false)
