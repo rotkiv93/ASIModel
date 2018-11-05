@@ -117,15 +117,15 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	
 	    	
 	    	//CREATING MOVIES
-	    	Movie pelicula1 = new Movie("El Padrino","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L), actoresP1);
+	    	Movie pelicula1 = new Movie("The Godfather","LucasArts" , date, "EEUU", 245, 213, false, "mafia y mas mafia y tiros y mas tiros", genreService.findById(1L),directorService.findById(3L), actoresP1);
 	    	movieService.save(pelicula1);
-	    	Movie pelicula2 = new Movie("Eduardo Manostijeras","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1);
+	    	Movie pelicula2 = new Movie("Origin","LucasArts2" , date, "Spain", 47, 30, false, "un tio que se corta sin querer",genreService.findById(2L), directorService.findById(2L), actoresP1);
 	    	movieService.save(pelicula2);
-	    	Movie pelicula4 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	Movie pelicula4 = new Movie("Titanic","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula4);
-	    	Movie pelicula5 = new Movie("PeliculaHoy","THX" , hoy, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	Movie pelicula5 = new Movie("Star Wars","THX" , hoy, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula5);
-	    	Movie pelicula6 = new Movie("Peliculahoy2n","THX" , hoy, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
+	    	Movie pelicula6 = new Movie("Harry Potter","THX" , hoy, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula6);
 	    	Movie pelicula7 = new Movie("Origen","THX" , date, "Spain", 445, 34, false, "movidas de sueños raros y eso",genreService.findById(2L),directorService.findById(1L), actoresP2);
 	    	movieService.save(pelicula7);
