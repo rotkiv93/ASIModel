@@ -12,9 +12,9 @@ public class MovieUserDTO {
 	
 
 	private MovieEnum estado;
-	
+	@NotNull
 	private UserDTOPrivate usuario;
-
+	@NotNull
 	private MovieDTO pelicula;
 	
 	public MovieUserDTO(){

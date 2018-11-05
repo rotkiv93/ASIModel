@@ -33,6 +33,10 @@ public class UserService {
         return userDAO.findAll().stream().map(user -> new UserDTOPublic(user)).collect(Collectors.toList());
     }
     
+    public UserDTOPrivate findByLogin(String login) {
+        return new UserDTOPrivate(userDAO.findByLogin(login));
+    }
+    
     @Transactional(readOnly = false)
     public UserDTOPrivate registerUser(String login, String password, String email) throws UserLoginExistsException {
         return registerUser(login, password,email, false);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.exception.UserLoginExistsException;
@@ -26,8 +27,12 @@ public class UserResource {
 	@Autowired
 	private UserService userService;
 	
-	
 	@GetMapping
+	public UserDTOPrivate findByLogin(@RequestParam String login) {
+		return userService.findByLogin(login);
+	}
+	
+	//@GetMapping
 	public List<UserDTOPublic> findAll() {
 		return userService.findAll();
 	}
