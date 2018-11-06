@@ -36,6 +36,7 @@ public class Movie {
 	private String titulo;
 	private Boolean oculta;
 	private String sinopsis;
+	private String rutaImagen;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Director director;
@@ -84,14 +85,15 @@ public class Movie {
 	}
 	
 	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
-			 Boolean oculta, String sinopsis, Genre genero, Director director, Set<Actor> actores) {
+			 Boolean oculta, String sinopsis, Genre genero, Director director, Set<Actor> actores, String rutaImagen) {
 		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero, director);
 		this.actores = actores;
+		this.rutaImagen = rutaImagen;
 	}
 
 	public Movie(String titulo, String productora, LocalDate fecha_estreno, String pais, Integer duracion, Integer ano_salida,
-			 Boolean oculta, String sinopsis, Genre genero, Director director, Set<Actor> actores,Set<MovieUser> usuarios) {
-		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero, director, actores);
+			 Boolean oculta, String sinopsis, Genre genero, Director director, Set<Actor> actores,String rutaImagen,Set<MovieUser> usuarios) {
+		this(titulo, productora, fecha_estreno, pais, duracion, ano_salida, oculta, sinopsis, genero, director, actores, rutaImagen);
 		this.usuarios = usuarios;
 	}
 	
@@ -214,6 +216,15 @@ public class Movie {
 
 	public void setUsuarios(Set<MovieUser> usuarios) {
 		this.usuarios = usuarios;
+	}
+	
+
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class MovieDTO {
 		this.oculta = movie.getOculta();
 		this.genero = new GenreDTO(movie.getGenero());
 		this.director = new DirectorDTO(movie.getDirector());
-		this.ruta = "https://source.unsplash.com/random/300x300";
+		this.ruta = movie.getRutaImagen();
 		
 		Set<Actor> act = movie.getActores();
 		for(Actor a : act){

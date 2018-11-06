@@ -46,9 +46,10 @@ public class MovieService {
     @Transactional(readOnly = false)
     public MovieDTO save(MovieDTO movie) {
     	  Movie bdMovie = new Movie(movie.getTitulo(), movie.getProductora(), movie.getFecha_estreno(), movie.getPais(),movie.getDuracion(), movie.getAno_salida(), null, movie.getSinopsis());
-          bdMovie.setOculta(false);
+    	  bdMovie.setOculta(false);
           bdMovie.setGenero(genreDAO.findById(movie.getGenero().getId()));
           bdMovie.setDirector(directorDAO.findById(movie.getDirector().getId()));
+          bdMovie.setRutaImagen(movie.getRuta());
           
           Set<Actor> actors = new HashSet<>();
           for(ActorDTO a: movie.getActores()){
@@ -73,6 +74,7 @@ public class MovieService {
         bdMovie.setOculta(movie.getOculta());
         bdMovie.setGenero(genreDAO.findById(movie.getGenero().getId()));
         bdMovie.setDirector(directorDAO.findById(movie.getDirector().getId()));
+        bdMovie.setRutaImagen(movie.getRuta());
         
         Set<Actor> actors = new HashSet<>();
         for(ActorDTO a: movie.getActores()){
