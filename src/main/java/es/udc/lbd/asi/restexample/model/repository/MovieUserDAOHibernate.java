@@ -62,18 +62,20 @@ public class MovieUserDAOHibernate extends GenericDAOHibernate implements MovieU
 		try {
 			MovieUser mov_usr = (MovieUser) s.get(MovieUser.class, id);
 			
-			User u = s.get(User.class, (mov_usr.getUsuario().getId()));
-			u.getPeliculas().remove(mov_usr);
-			s.saveOrUpdate(u);
+			if (mov_usr !=null) {
 			
-			Movie m = s.get(Movie.class, mov_usr.getPelicula().getId());
-			m.getUsuarios().remove(mov_usr);
-			s.saveOrUpdate(m);
+				User u = s.get(User.class, (mov_usr.getUsuario().getId()));
+				u.getPeliculas().remove(mov_usr);
+				s.saveOrUpdate(u);
+				
+				Movie m = s.get(Movie.class, mov_usr.getPelicula().getId());
+				m.getUsuarios().remove(mov_usr);
+				s.saveOrUpdate(m);
+			}
 			
-			s.delete(mov_usr.getId());
+			s.delete(findById(id));
 		} catch (Exception e){
 		}
-		
 	}
 
 
