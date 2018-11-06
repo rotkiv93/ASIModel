@@ -33,6 +33,7 @@ public class MovieDTO {
 	@NotNull
 	private DirectorDTO director;
 
+	private String ruta;
 	private Set<ActorDTO> actores = new HashSet<>();
 	
 	
@@ -52,7 +53,7 @@ public class MovieDTO {
 		this.oculta = movie.getOculta();
 		this.genero = new GenreDTO(movie.getGenero());
 		this.director = new DirectorDTO(movie.getDirector());
-		
+		this.ruta = "";
 		
 		Set<Actor> act = movie.getActores();
 		for(Actor a : act){
@@ -155,6 +156,14 @@ public class MovieDTO {
 
 	public void setActores(Set<ActorDTO> actores) {
 		this.actores = actores;
+	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
 	}
 	
 }
