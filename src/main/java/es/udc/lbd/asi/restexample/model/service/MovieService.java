@@ -11,12 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.User;
+import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
 import es.udc.lbd.asi.restexample.model.repository.DirectorDAO;
 import es.udc.lbd.asi.restexample.model.repository.GenreDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
+import es.udc.lbd.asi.restexample.model.repository.UserDAO;
 import es.udc.lbd.asi.restexample.model.service.dto.ActorDTO;
 import es.udc.lbd.asi.restexample.model.service.dto.MovieDTO;
+import es.udc.lbd.asi.restexample.security.SecurityUtils;
 
 @Service
 @Transactional(readOnly = true, rollbackFor = Exception.class)
@@ -34,9 +38,24 @@ public class MovieService {
     @Autowired
     private ActorDAO actorDAO;
     
+    @Autowired
+    private UserDAO userDAO;
+    
 
     public List<MovieDTO> findAll() {
-    	 return movieDAO.findAll().stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
+    	
+    	if (SecurityUtils.getCurrentUserLogin() != null){
+    		User usuario = userDAO.findByLogin(SecurityUtils.getCurrentUserLogin());
+    	
+    		if (usuario.getAuthority() == UserAuthority.ADMIN)
+        		return movieDAO.findAll(true).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
+        	else
+        		return movieDAO.findAll(false).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
+    	} else{
+    		return movieDAO.findAll(false).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
+    	}
+    	
+    	
     }
 
     public MovieDTO findById(Long id) {

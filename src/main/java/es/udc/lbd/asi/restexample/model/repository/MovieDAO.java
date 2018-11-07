@@ -6,7 +6,7 @@ import es.udc.lbd.asi.restexample.model.domain.Movie;
 
 public interface MovieDAO {
 
-    List<Movie> findAll();
+    List<Movie> findAll(Boolean isAdmin);
     
     List<Movie> findAllInDate(LocalDate fecha);
     

@@ -19,8 +19,10 @@ import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 
 	@Override
-	public List<Movie> findAll() {
-		return getSession().createQuery("from Movie").list();
+	public List<Movie> findAll(Boolean isAdmin) {
+		System.out.println(isAdmin);
+		if (isAdmin) return getSession().createQuery("from Movie").list();
+		else return getSession().createQuery("from Movie m where m.oculta = false").list();
 	}
 
 	@Override
