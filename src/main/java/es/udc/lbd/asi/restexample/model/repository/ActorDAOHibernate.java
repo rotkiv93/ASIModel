@@ -41,24 +41,7 @@ public class ActorDAOHibernate extends GenericDAOHibernate implements ActorDAO {
 
 	@Override
 	public void deleteById(Long id) {
-		Session s = getSession(); 
-		
-		try {
-			Actor a = (Actor) s.get(Actor.class, id);
-			
-			//se borran las listas de peliculas de actores
-			if (a !=null) {
-				for(Movie m : a.getPeliculas()) {
-					Movie mov1 = (Movie) s.get(Movie.class, m.getId());
-					mov1.getActores().remove(a);
-					s.saveOrUpdate(mov1);
-				}
-			}
-			//se borra la pelicula
-			s.delete(findById(id));
-		} catch (Exception e) {
-			
-		}
+		getSession().delete(findById(id));
 	}
 	
 }
