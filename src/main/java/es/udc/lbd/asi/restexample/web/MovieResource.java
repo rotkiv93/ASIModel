@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.service.MovieService;
 import es.udc.lbd.asi.restexample.model.service.dto.MovieDTO;
 import es.udc.lbd.asi.restexample.web.exception.IdAndBodyNotMatchingOnUpdateException;
@@ -31,9 +32,12 @@ public class MovieResource {
     private MovieService movieService;
 
     @GetMapping
-    public List<MovieDTO> findAll() {
-        return movieService.findAll();
+    public List<MovieDTO> findAll(@RequestParam(required = false) MovieEnum tipoBusqueda) {
+    	if (tipoBusqueda != null) {
+    		return movieService.findAllWithOptions(tipoBusqueda);
+    	} else return movieService.findAll();
     }
+    
 
     @GetMapping("/{id}")
     public MovieDTO findOne(@PathVariable Long id) {

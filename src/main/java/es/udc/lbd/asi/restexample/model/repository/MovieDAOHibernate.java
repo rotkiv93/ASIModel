@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
@@ -20,11 +21,16 @@ public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 
 	@Override
 	public List<Movie> findAll(Boolean isAdmin) {
-		System.out.println(isAdmin);
 		if (isAdmin) return getSession().createQuery("from Movie").list();
 		else return getSession().createQuery("from Movie m where m.oculta = false").list();
 	}
 
+	
+	@Override
+	public List<Movie> findAllWithOptions(MovieEnum tipo, User usuario) {
+		return getSession().createQuery("select m from Movie m INNER JOIN m.usuarios mu where m.oculta = false AND mu.usuario = :usuario AND mu.estado = :tipo").setParameter("usuario", usuario).setParameter("tipo", tipo).list();
+	}
+	
 	@Override
 	public List<Movie> findAllInDate(LocalDate fecha) {
 		return getSession().createQuery("from Movie m where m.fecha_estreno = :fecha").setParameter("fecha", fecha, TemporalType.DATE).list();

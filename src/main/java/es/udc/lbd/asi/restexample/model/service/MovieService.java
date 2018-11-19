@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 import es.udc.lbd.asi.restexample.model.repository.ActorDAO;
@@ -53,10 +54,20 @@ public class MovieService {
         		return movieDAO.findAll(false).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
     	} else{
     		return movieDAO.findAll(false).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
-    	}
-    	
-    	
+    	}	
     }
+    
+public List<MovieDTO> findAllWithOptions(MovieEnum tipoBusqueda) {
+    	
+    	if (SecurityUtils.getCurrentUserLogin() != null){
+    		User usuario = userDAO.findByLogin(SecurityUtils.getCurrentUserLogin());
+    	
+        	return movieDAO.findAllWithOptions(tipoBusqueda, usuario).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
+    	} else {
+    		return null;
+    	}
+    }
+    
 
     public MovieDTO findById(Long id) {
         return new MovieDTO(movieDAO.findById(id));
