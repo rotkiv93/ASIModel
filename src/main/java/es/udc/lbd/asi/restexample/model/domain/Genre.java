@@ -20,7 +20,7 @@ public class Genre {
 	@Column(name="ID_GENRE")
 	private Long id;
 	
-    @Column(name = "NOMBRE",unique = true)
+    @Column(name = "NOMBRE",unique = true, nullable = false)
 	private String nombre;
 	
 	public Genre(){
