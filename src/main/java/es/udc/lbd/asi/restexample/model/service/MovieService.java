@@ -75,8 +75,7 @@ public List<MovieDTO> findAllWithOptions(MovieEnum tipoBusqueda) {
 
     @Transactional(readOnly = false)
     public MovieDTO save(MovieDTO movie) {
-    	  Movie bdMovie = new Movie(movie.getTitulo(), movie.getProductora(), movie.getFecha_estreno(), movie.getPais(),movie.getDuracion(), movie.getAno_salida(), null, movie.getSinopsis());
-    	  bdMovie.setOculta(false);
+    	  Movie bdMovie = new Movie(movie.getTitulo(), movie.getProductora(), movie.getFecha_estreno(), movie.getPais(),movie.getDuracion(), movie.getAno_salida(), movie.getOculta(), movie.getSinopsis());
           bdMovie.setGenero(genreDAO.findById(movie.getGenero().getId()));
           bdMovie.setDirector(directorDAO.findById(movie.getDirector().getId()));
           bdMovie.setRutaImagen(movie.getRuta());
