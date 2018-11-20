@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
+import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 import es.udc.lbd.asi.restexample.model.repository.util.GenericDAOHibernate;
 
 @Repository
@@ -16,7 +18,9 @@ public class UserDAOHibernate extends GenericDAOHibernate implements UserDAO {
 
 	@Override
 	public List<User> findAll() {
-		return getSession().createQuery("from User").list();	
+		UserAuthority us = UserAuthority.USER;
+		
+		return getSession().createQuery("from User m where m.authority = :us").setParameter("us", us).list();	
 	}
 
 	@Override
