@@ -13,6 +13,8 @@ public interface MovieUserDAO {
 
     List<MovieUser> findAllMovieUsersWithMoviePending(Movie movie);
     
+    List<MovieUser> findAllByLogin(User user);
+    
 	MovieUser findById(Long id);
 
     void save(MovieUser movieUser);

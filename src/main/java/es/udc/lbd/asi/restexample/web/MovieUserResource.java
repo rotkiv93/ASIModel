@@ -34,9 +34,13 @@ public class MovieUserResource {
     private MovieUserService movieUserService;
 
 
-	//@GetMapping
-    public List<MovieUserDTO> findAll() {
-        return movieUserService.findAll();
+	@GetMapping
+    public List<MovieUserDTO> findAll(@RequestParam (required = false) String userLogin) {
+        if (userLogin == null){
+    		return movieUserService.findAll();
+        } else{
+        	return movieUserService.findAllByLogin(userLogin);
+        }
     }
 
     @GetMapping("/{id}")
@@ -44,8 +48,8 @@ public class MovieUserResource {
         return movieUserService.findById(id);
     }
     
-    @GetMapping
-    public MovieUserDTO findByMovieAndUser(@RequestParam Long movieID, @RequestParam String userLogin){
+    @GetMapping("/{movieID}/{userLogin}")
+    public MovieUserDTO findByMovieAndUser(@PathVariable Long movieID, @PathVariable String userLogin){
     	return movieUserService.findByMovieAndUSer(movieID, userLogin);
     }
 

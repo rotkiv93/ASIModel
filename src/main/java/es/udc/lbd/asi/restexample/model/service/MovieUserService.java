@@ -39,6 +39,15 @@ public class MovieUserService {
 	        return new MovieUserDTO(movieUserDAO.findById(id));
 	    }
 	    
+	    public List<MovieUserDTO> findAllByLogin(String userLogin) {
+	    	if(userDAO.findByLogin(userLogin) != null){
+	    		User user = userDAO.findByLogin(userLogin);
+	    	 	 return movieUserDAO.findAllByLogin(user).stream().map(movieUser -> new MovieUserDTO(movieUser)).collect(Collectors.toList());
+	    	} else return null;
+	    	
+	   }
+	    
+	    
 	    
 	    public MovieUserDTO findByMovieAndUSer(Long movieID, String userLogin){
 	    		Movie movie = movieDAO.findById(movieID);

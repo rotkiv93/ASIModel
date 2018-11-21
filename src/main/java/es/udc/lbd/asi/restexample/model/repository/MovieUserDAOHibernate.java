@@ -21,7 +21,12 @@ public class MovieUserDAOHibernate extends GenericDAOHibernate implements MovieU
 		return getSession().createQuery("from MovieUser").list();	
 	}
 
-
+	@Override
+	public List<MovieUser> findAllByLogin(User user) {
+		return getSession().createQuery("from MovieUser m where m.usuario = :user").setParameter("user", user).list();	
+	}
+	
+	
 	@Override
 	public List<MovieUser> findAllMovieUsersWithMoviePending(Movie movie) {
 		Query q = getSession().createQuery("from MovieUser m where m.pelicula = :movie and estado = 1");
@@ -83,5 +88,6 @@ public class MovieUserDAOHibernate extends GenericDAOHibernate implements MovieU
 	public MovieUser findByUserAndMovie(Movie movie, User user) {
 		return (MovieUser) getSession().createQuery("from MovieUser m where m.pelicula = :movie AND m.usuario = :user").setParameter("movie", movie).setParameter("user", user).uniqueResult();
 	}
+
 
 }
