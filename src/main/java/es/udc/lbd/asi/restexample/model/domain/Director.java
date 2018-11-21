@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table (name="DIRECTOR")
+@Table (name="DIRECTOR", uniqueConstraints = @UniqueConstraint(columnNames={"nombre", "apellido1"}))
 public class Director {
 
 	@Id
@@ -19,9 +21,11 @@ public class Director {
 	private Long id;
 	
 	@Column(name="NOMBRE", nullable = false)
+	@NotEmpty
 	private String nombre;
 	
 	@Column(name="APELLIDO1", nullable = false)
+	@NotEmpty
 	private String apellido1;
 	
 	@Column(name="APELLIDO2", nullable = true)

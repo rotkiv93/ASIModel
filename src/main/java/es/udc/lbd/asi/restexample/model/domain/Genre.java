@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 
@@ -21,6 +22,7 @@ public class Genre {
 	private Long id;
 	
     @Column(name = "NOMBRE",unique = true, nullable = false)
+    @NotEmpty
 	private String nombre;
 	
 	public Genre(){

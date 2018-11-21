@@ -13,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table (name="ACTOR")
+@Table (name="ACTOR", uniqueConstraints = @UniqueConstraint(columnNames={"nombre", "apellido1"}))
 public class Actor {
 	
 	@Id
@@ -25,9 +27,11 @@ public class Actor {
 	private Long id;
 	
     @Column(name = "NOMBRE", nullable = false)
+    @NotEmpty
 	private String nombre;
     
     @Column(name = "APELLIDO1", nullable = false)
+    @NotEmpty
     private String apellido1;
     
     @Column(name = "APELLIDO2", nullable = true)
