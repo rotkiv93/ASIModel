@@ -19,7 +19,6 @@ public class UserDAOHibernate extends GenericDAOHibernate implements UserDAO {
 	@Override
 	public List<User> findAll() {
 		UserAuthority us = UserAuthority.USER;
-		
 		return getSession().createQuery("from User m where m.authority = :us").setParameter("us", us).list();	
 	}
 

@@ -37,7 +37,6 @@ public class MovieResource {
     		return movieService.findAllWithOptions(tipoBusqueda);
     	} else return movieService.findAll();
     }
-    
 
     @GetMapping("/{id}")
     public MovieDTO findOne(@PathVariable Long id) {
