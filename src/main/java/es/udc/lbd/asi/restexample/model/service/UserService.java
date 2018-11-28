@@ -1,5 +1,6 @@
 package es.udc.lbd.asi.restexample.model.service;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +50,7 @@ public class UserService {
            
         }
         
-        User user = new User(login,password,email);
+        User user = new User(login,password,email, LocalDate.now());
         String encryptedPassword = passwordEncoder.encode(password);
         user.setPassword(encryptedPassword);
 

@@ -13,8 +13,9 @@ public class UserDTOPublic {
     private Long id;
     @NotEmpty
     private String login;
-	
-    private Set<MovieUserDTO> peliculas = new HashSet<>();
+    
+    private Integer num_vistas;
+  
     
     public UserDTOPublic() {
     }
@@ -23,10 +24,7 @@ public class UserDTOPublic {
         this.id = user.getId();
         this.login = user.getLogin();
         
-		Set<MovieUser> act = user.getPeliculas();
-		for(MovieUser a : act){
-			this.peliculas.add(new MovieUserDTO(a));
-		}
+        this.num_vistas = user.getPeliculas().size();
     }
 
     public Long getId() {
@@ -45,13 +43,12 @@ public class UserDTOPublic {
         this.login = login;
     }
 
-	public Set<MovieUserDTO> getPeliculas() {
-		return peliculas;
+	public Integer getNum_vistas() {
+		return num_vistas;
 	}
 
-	public void setPeliculas(Set<MovieUserDTO> peliculas) {
-		this.peliculas = peliculas;
+	public void setNum_vistas(Integer num_vistas) {
+		this.num_vistas = num_vistas;
 	}
-    
     
 }

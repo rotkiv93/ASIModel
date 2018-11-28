@@ -1,5 +1,6 @@
 package es.udc.lbd.asi.restexample.model.domain;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +35,9 @@ public class User {
 
 	 @Enumerated(EnumType.STRING)
 	 private UserAuthority authority;
+	 
+	 @Column(nullable = false)
+	 private LocalDate fecha_alta;
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	private Set<MovieUser> peliculas = new HashSet<>();
@@ -41,22 +45,23 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password,String email){
+    public User(String login, String password,String email, LocalDate fecha_alta){
     	this.login = login;
     	this.password = password;
     	this.email = email;
     	this.authority = UserAuthority.USER;
+    	this.fecha_alta = fecha_alta;
     }
     
     
-    public User(String login, String password,String email, UserAuthority aut){
-    	this(login,password,email);
+    public User(String login, String password,String email, LocalDate fecha_alta, UserAuthority aut){
+    	this(login,password,email, fecha_alta);
     	this.authority = aut;
     }
     
     
-    public User(String login, String password, String email,UserAuthority aut, Set<MovieUser> peliculas) {
-    	this(login,password, email,aut);
+    public User(String login, String password, String email, LocalDate fecha_alta,UserAuthority aut, Set<MovieUser> peliculas) {
+    	this(login,password, email, fecha_alta,aut);
     	this.peliculas = peliculas;
     }
     
@@ -107,6 +112,14 @@ public class User {
 
 	public void setPeliculas(Set<MovieUser> peliculas) {
 		this.peliculas = peliculas;
+	}
+
+	public LocalDate getFecha_alta() {
+		return fecha_alta;
+	}
+
+	public void setFecha_alta(LocalDate fecha_alta) {
+		this.fecha_alta = fecha_alta;
 	}
     
     

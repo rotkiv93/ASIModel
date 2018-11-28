@@ -1,5 +1,6 @@
 package es.udc.lbd.asi.restexample.model.service.dto;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,8 @@ public class UserDTOPrivate {
     private String password;
     private UserAuthority authority;
     private String email;
-
+    private LocalDate fecha_alta;
+    
 	@NotNull
 	private Set<MovieUserDTO> peliculas = new HashSet<>();
     
@@ -25,6 +27,7 @@ public class UserDTOPrivate {
         this.id = user.getId();
         this.login = user.getLogin();
         this.email = user.getEmail();
+        this.fecha_alta = user.getFecha_alta();
         // la contraseña no se rellena, nunca se envía al cliente
         this.authority = user.getAuthority();
     }
@@ -76,4 +79,14 @@ public class UserDTOPrivate {
 	public void setAuthority(UserAuthority authority) {
 		this.authority = authority;
 	}
+
+	public LocalDate getFecha_alta() {
+		return fecha_alta;
+	}
+
+	public void setFecha_alta(LocalDate fecha_alta) {
+		this.fecha_alta = fecha_alta;
+	}
+	
+	
 }
