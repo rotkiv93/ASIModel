@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
+import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 
@@ -16,6 +18,11 @@ public class UserDTOPrivate {
     private UserAuthority authority;
     private String email;
     private LocalDate fecha_alta;
+    private Integer num_vistas = 0;
+    private Integer num_pendientes = 0;
+    private Integer num_valoradas = 0;
+    
+    
     
 	@NotNull
 	private Set<MovieUserDTO> peliculas = new HashSet<>();
@@ -30,6 +37,13 @@ public class UserDTOPrivate {
         this.fecha_alta = user.getFecha_alta();
         // la contraseña no se rellena, nunca se envía al cliente
         this.authority = user.getAuthority();
+        
+        Set<MovieUser> pel = user.getPeliculas();
+        for (MovieUser p :pel){
+        	if(p.getEstado() == MovieEnum.Vista) this.num_vistas ++;
+          	if(p.getEstado() == MovieEnum.Pendiente) this.num_pendientes ++;
+          	if(p.getValoracion() != null) this.num_valoradas ++;
+        }        
     }
 
     public Long getId() {
@@ -86,6 +100,30 @@ public class UserDTOPrivate {
 
 	public void setFecha_alta(LocalDate fecha_alta) {
 		this.fecha_alta = fecha_alta;
+	}
+
+	public Integer getNum_vistas() {
+		return num_vistas;
+	}
+
+	public void setNum_vistas(Integer num_vistas) {
+		this.num_vistas = num_vistas;
+	}
+
+	public Integer getNum_pendientes() {
+		return num_pendientes;
+	}
+
+	public void setNum_pendientes(Integer num_pendientes) {
+		this.num_pendientes = num_pendientes;
+	}
+
+	public Integer getNum_valoradas() {
+		return num_valoradas;
+	}
+
+	public void setNum_valoradas(Integer num_valoradas) {
+		this.num_valoradas = num_valoradas;
 	}
 	
 	

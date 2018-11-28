@@ -11,12 +11,12 @@ import es.udc.lbd.asi.restexample.model.domain.User;
 
 public class UserDTOPublic {
     private Long id;
+    
     @NotEmpty
     private String login;
     
     private Integer num_vistas;
   
-    
     public UserDTOPublic() {
     }
 
