@@ -70,4 +70,12 @@ public class UserService {
         }
         return null;
     }
+    
+    
+    public UserDTOPrivate updateUser(UserDTOPrivate user) {
+    	User usuario = userDAO.findByLogin(user.getLogin());
+    	usuario.setNotificacion(user.getNotificaciones());
+    	userDAO.save(usuario);
+    	return new UserDTOPrivate(usuario);
+    }
 }

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
+import es.udc.lbd.asi.restexample.model.domain.NotifEnum;
 import es.udc.lbd.asi.restexample.model.domain.User;
 import es.udc.lbd.asi.restexample.model.domain.UserAuthority;
 
@@ -21,7 +22,7 @@ public class UserDTOPrivate {
     private Integer num_vistas = 0;
     private Integer num_pendientes = 0;
     private Integer num_valoradas = 0;
-    
+    private NotifEnum notificaciones;
     
     
 	@NotNull
@@ -37,6 +38,7 @@ public class UserDTOPrivate {
         this.fecha_alta = user.getFecha_alta();
         // la contraseña no se rellena, nunca se envía al cliente
         this.authority = user.getAuthority();
+        this.notificaciones = user.getNotificacion();
         
         Set<MovieUser> pel = user.getPeliculas();
         for (MovieUser p :pel){
@@ -124,6 +126,14 @@ public class UserDTOPrivate {
 
 	public void setNum_valoradas(Integer num_valoradas) {
 		this.num_valoradas = num_valoradas;
+	}
+
+	public NotifEnum getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(NotifEnum notificaciones) {
+		this.notificaciones = notificaciones;
 	}
 	
 	

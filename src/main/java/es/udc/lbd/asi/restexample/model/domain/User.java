@@ -39,6 +39,9 @@ public class User {
 	 @Column(nullable = false)
 	 private LocalDate fecha_alta;
 	
+	 @Column(nullable = true)
+	 private NotifEnum notificacion;
+	 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Set<MovieUser> peliculas = new HashSet<>();
 
@@ -50,6 +53,7 @@ public class User {
     	this.password = password;
     	this.email = email;
     	this.authority = UserAuthority.USER;
+    	this.notificacion = NotifEnum.Email;
     	this.fecha_alta = fecha_alta;
     }
     
@@ -121,6 +125,13 @@ public class User {
 	public void setFecha_alta(LocalDate fecha_alta) {
 		this.fecha_alta = fecha_alta;
 	}
-    
+
+	public NotifEnum getNotificacion() {
+		return notificacion;
+	}
+
+	public void setNotificacion(NotifEnum notificacion) {
+		this.notificacion = notificacion;
+	}
     
 }
