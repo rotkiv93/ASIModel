@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
+import es.udc.lbd.asi.restexample.model.domain.NotifEnum;
 import es.udc.lbd.asi.restexample.model.repository.MovieDAO;
 import es.udc.lbd.asi.restexample.model.repository.MovieUserDAO;
 
@@ -66,7 +67,13 @@ public class Notificator {
 			emailsANotificar.clear();
 			List<MovieUser> usuariosNotif = movieUserDAO.findAllMovieUsersWithMoviePending(m);
 			for (MovieUser mu : usuariosNotif) {
-				emailsANotificar.add(mu.getUsuario().getEmail());
+				// solo se añade si el usuario quiere notificaciones por email
+				if (mu.getUsuario().getNotificacion() == NotifEnum.Email){
+					emailsANotificar.add(mu.getUsuario().getEmail());
+				} else{
+					System.out.println("Enviar SMS al usuario " + mu.getUsuario().toString() + " por la pelicula " + mu.getPelicula().toString());
+				}
+				
 			}
 
 			if (emailsANotificar.size() > 0) {

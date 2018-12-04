@@ -53,13 +53,10 @@ public class UserResource {
 		return userService.registerUser(user.getLogin(), user.getPassword(), user.getEmail());
 	}
 	 
-	@PutMapping("7{login}")
+	@PutMapping("/{login}")
 	public UserDTOPrivate update (@PathVariable String login, @RequestBody @Valid UserDTOPrivate user, Errors errors) 
 			throws IdAndBodyNotMatchingOnUpdateException,RequestBodyNotValidException {
 		errorHandler(errors);
-		if (login != user.getLogin()) {
-			throw new IdAndBodyNotMatchingOnUpdateException(Movie.class);
-		}
 		return userService.updateUser(user);
 	}
 	

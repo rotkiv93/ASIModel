@@ -71,7 +71,7 @@ public class UserService {
         return null;
     }
     
-    
+    @Transactional(readOnly = false)
     public UserDTOPrivate updateUser(UserDTOPrivate user) {
     	User usuario = userDAO.findByLogin(user.getLogin());
     	usuario.setNotificacion(user.getNotificaciones());
