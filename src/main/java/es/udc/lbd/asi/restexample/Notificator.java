@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.lbd.asi.restexample.config.DatabaseLoader;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.domain.MovieUser;
 import es.udc.lbd.asi.restexample.model.domain.NotifEnum;
@@ -29,6 +32,8 @@ import javax.mail.internet.MimeMessage;
 @Component
 public class Notificator {
 
+	private final Logger logger = LoggerFactory.getLogger(Notificator.class);
+	
 	@Autowired
 	private MovieUserDAO movieUserDAO;
 
@@ -41,7 +46,7 @@ public class Notificator {
 	@Scheduled(cron = "* * 10 * * *")
 	@Transactional(readOnly = false, rollbackFor = Exception.class)
 	public void scheduleFixedDelayTask() {
-
+		
 		LocalDate fecha = LocalDate.now();
 		Set<String> emailsANotificar = new HashSet<>();
 
@@ -71,7 +76,7 @@ public class Notificator {
 				if (mu.getUsuario().getNotificacion() == NotifEnum.Email){
 					emailsANotificar.add(mu.getUsuario().getEmail());
 				} else{
-					System.out.println("Enviar SMS al usuario " + mu.getUsuario().toString() + " por la pelicula " + mu.getPelicula().toString());
+					logger.info("Enviar SMS al usuario " + mu.getUsuario().toString() + " por la pelicula " + mu.getPelicula().toString());
 				}
 				
 			}
