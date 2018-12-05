@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 
 import es.udc.lbd.asi.restexample.model.domain.Actor;
 import es.udc.lbd.asi.restexample.model.domain.Movie;
+import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
+import es.udc.lbd.asi.restexample.model.domain.MovieUser;
+import es.udc.lbd.asi.restexample.security.SecurityUtils;
 
 public class MovieDTO {
 	private Long id;
@@ -36,6 +39,8 @@ public class MovieDTO {
 	private String ruta;
 	private Set<ActorDTO> actores = new HashSet<>();
 	
+	private MovieEnum estado;	
+	private Integer valoracion;
 	
 	public MovieDTO(){
 		
@@ -59,6 +64,19 @@ public class MovieDTO {
 		for(Actor a : act){
 			this.actores.add(new ActorDTO(a));
 		}
+		
+		Set<MovieUser> users = movie.getUsuarios();
+		for(MovieUser u : users){
+			if(u.getUsuario().getLogin().equals(SecurityUtils.getCurrentUserLogin())){
+				this.valoracion = u.getValoracion();
+				this.estado = u.getEstado();
+				System.out.println(u.getUsuario().getLogin() +" para la pelicula "+ u.getPelicula().getTitulo());
+				System.out.println("Y el usuario actual es: " + SecurityUtils.getCurrentUserLogin());
+				break;
+			}
+		}
+		
+		
 	}
 
 
@@ -165,5 +183,20 @@ public class MovieDTO {
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 	}
-	
+
+	public MovieEnum getEstado() {
+		return estado;
+	}
+
+	public void setEstado(MovieEnum estado) {
+		this.estado = estado;
+	}
+
+	public Integer getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(Integer valoracion) {
+		this.valoracion = valoracion;
+	}
 }
