@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.udc.lbd.asi.restexample.model.domain.Movie;
 import es.udc.lbd.asi.restexample.model.domain.MovieEnum;
@@ -62,6 +64,17 @@ public class MovieResource {
     @DeleteMapping("/{id}")
     public void delete(@RequestParam Long id) {
         movieService.deleteById(id);
+    }
+    
+    @GetMapping("/image/{path}")
+    public Resource getImage(@PathVariable String path) throws Exception {
+        return movieService.getImageAsResource(path);
+    }
+   
+    @PutMapping("/{id}/image")
+    public void loadImage(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws Exception {
+        movieService.update(movieService.findById(id));
+        movieService.store(file);
     }
     
     private void errorHandler(Errors errors) throws RequestBodyNotValidException {

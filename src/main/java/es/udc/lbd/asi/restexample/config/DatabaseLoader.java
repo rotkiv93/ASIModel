@@ -151,7 +151,7 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	movieService.save(pelicula9);
 	    	Movie pelicula10 = new Movie("Toy Story","Walt Disney Pictures" , date, "EEUU", 80, 1995, false, 
 	    			"Los juguetes de Andy, un niño de 6 años, temen que haya llegado su hora y que un nuevo regalo de cumpleaños les sustituya en el corazón de su dueño....",
-	    			genreService.findById(2L),directorService.findById(1L), actoresP2,"https://image.tmdb.org/t/p/w300/rhIRbceoE9lR4veEXuwCC2wARtG.jpg");
+	    			genreService.findById(2L),directorService.findById(1L), actoresP2,"patrino.png");
 	    	movieService.save(pelicula10);
 	    
 	    	
