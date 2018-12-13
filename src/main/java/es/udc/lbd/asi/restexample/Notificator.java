@@ -43,7 +43,7 @@ public class Notificator {
 	// cron puesto para que se ejecute cada dia a las 10 AM
 	//@Scheduled(cron = "*/20 * * * * *")
 
-	@Scheduled(cron = "* * 10 * * *")
+	//@Scheduled(cron = "* * 10 * * *")
 	@Transactional(readOnly = false, rollbackFor = Exception.class)
 	public void scheduleFixedDelayTask() {
 		

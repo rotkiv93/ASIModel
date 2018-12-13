@@ -147,11 +147,11 @@ import es.udc.lbd.asi.restexample.model.service.UserService;
 	    	movieService.save(pelicula8);
 	    	Movie pelicula9 = new Movie("Up","Pixar Animation Studios" , date, "EEUU", 96, 2009, false, 
 	    			"Carl Fredricksen es un viudo vendedor de globos de 78 años que, finalmente, consigue llevar a cabo el sueño de su vida: enganchar miles de globos a su casa y salir volando rumbo a América del Sur...",
-	    			genreService.findById(2L),directorService.findById(1L), actoresP2,"https://image.tmdb.org/t/p/w300/nk11pvocdb5zbFhX5oq5YiLPYMo.jpg");
+	    			genreService.findById(2L),directorService.findById(1L), actoresP2,"petas.jpg");
 	    	movieService.save(pelicula9);
 	    	Movie pelicula10 = new Movie("Toy Story","Walt Disney Pictures" , date, "EEUU", 80, 1995, false, 
 	    			"Los juguetes de Andy, un niño de 6 años, temen que haya llegado su hora y que un nuevo regalo de cumpleaños les sustituya en el corazón de su dueño....",
-	    			genreService.findById(2L),directorService.findById(1L), actoresP2,"patrino.png");
+	    			genreService.findById(2L),directorService.findById(1L), actoresP2,"patrino.jpg");
 	    	movieService.save(pelicula10);
 	    
 	    	

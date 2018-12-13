@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,9 +73,12 @@ public class MovieResource {
         return movieService.getImageAsResource(path);
     }
    
-    @PutMapping("/{id}/image")
-    public void loadImage(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws Exception {
-        movieService.update(movieService.findById(id));
+    //@PostMapping("/{id}/image")
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    public void loadImage(@RequestParam("file") MultipartFile file, ModelMap modelMap) throws Exception {
+        System.out.println("ENTRA EN EL SERVICIO");
+        modelMap.addAttribute("file", file);
+        //movieService.update(movieService.findById(id));
         movieService.store(file);
     }
     
