@@ -70,8 +70,6 @@ public class MovieDTO {
 			if(u.getUsuario().getLogin().equals(SecurityUtils.getCurrentUserLogin())){
 				this.valoracion = u.getValoracion();
 				this.estado = u.getEstado();
-				System.out.println(u.getUsuario().getLogin() +" para la pelicula "+ u.getPelicula().getTitulo());
-				System.out.println("Y el usuario actual es: " + SecurityUtils.getCurrentUserLogin());
 				break;
 			}
 		}
