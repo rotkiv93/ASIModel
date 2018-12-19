@@ -76,9 +76,7 @@ public class MovieResource {
     //@PostMapping("/{id}/image")
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public void loadImage(@RequestParam("file") MultipartFile file, ModelMap modelMap) throws Exception {
-        System.out.println("ENTRA EN EL SERVICIO");
         modelMap.addAttribute("file", file);
-        //movieService.update(movieService.findById(id));
         movieService.store(file);
     }
     
