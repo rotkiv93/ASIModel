@@ -36,10 +36,13 @@ public class MovieResource {
     private MovieService movieService;
 
     @GetMapping
-    public List<MovieDTO> findAll(@RequestParam(required = false) MovieEnum tipoBusqueda) {
+    public List<MovieDTO> findAll(@RequestParam(required = false) MovieEnum tipoBusqueda,
+    		@RequestParam(required = false) String title) {
     	if (tipoBusqueda != null) {
     		return movieService.findAllWithOptions(tipoBusqueda);
-    	} else return movieService.findAll();
+    	} else if (title != null ){
+    		return movieService.findByTitle(title);
+    	} else return movieService.findAll(); 
     }
 
     @GetMapping("/{id}")
@@ -78,11 +81,7 @@ public class MovieResource {
 		return null;
     }
     
-    @GetMapping()
-    public List<MovieDTO> findByTitle(@RequestParam String title) {
-    	return movieService.findByTitle(title);
-    }
-   
+    
     //@PostMapping("/{id}/image")
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public void loadImage(@RequestParam("file") MultipartFile file, ModelMap modelMap) throws Exception {
