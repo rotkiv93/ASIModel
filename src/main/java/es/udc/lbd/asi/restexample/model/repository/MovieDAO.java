@@ -14,6 +14,8 @@ public interface MovieDAO {
     
     List<Movie> findAllInDate(LocalDate fecha);
     
+    List <Movie> findByTitle(String title);
+    
     Movie findById(Long id);
 
     void save(Movie movie);

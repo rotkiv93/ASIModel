@@ -97,5 +97,11 @@ public class MovieDAOHibernate extends GenericDAOHibernate implements MovieDAO {
 			
 		}
 	}
+
+
+	@Override
+	public List<Movie> findByTitle(String title) {
+		return getSession().createQuery("from Movie m where m.titulo like :title%").setParameter("title", title).list();
+	}
 	
 }

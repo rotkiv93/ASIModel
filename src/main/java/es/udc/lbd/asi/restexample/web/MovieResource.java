@@ -77,6 +77,11 @@ public class MovieResource {
 		}
 		return null;
     }
+    
+    @GetMapping()
+    public List<MovieDTO> findByTitle(@RequestParam String title) {
+    	return movieService.findByTitle(title);
+    }
    
     //@PostMapping("/{id}/image")
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)

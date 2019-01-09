@@ -86,7 +86,7 @@ public class MovieService {
     	}	
     }
     
-public List<MovieDTO> findAllWithOptions(MovieEnum tipoBusqueda) {
+    public List<MovieDTO> findAllWithOptions(MovieEnum tipoBusqueda) {
     	
     	if (SecurityUtils.getCurrentUserLogin() != null){
     		User usuario = userDAO.findByLogin(SecurityUtils.getCurrentUserLogin());
@@ -194,4 +194,7 @@ public List<MovieDTO> findAllWithOptions(MovieEnum tipoBusqueda) {
         }
     }    
 	
+    public List<MovieDTO> findByTitle(String title){
+    	return movieDAO.findByTitle(title).stream().map(movie -> new MovieDTO(movie)).collect(Collectors.toList());
+    }
 }
