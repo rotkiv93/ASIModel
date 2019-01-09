@@ -69,8 +69,13 @@ public class MovieResource {
     }
     
     @GetMapping("/image/{path}")
-    public Resource getImage(@PathVariable String path) throws Exception {
-        return movieService.getImageAsResource(path);
+    public Resource getImage(@PathVariable String path) {
+        try {
+			return movieService.getImageAsResource(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		}
+		return null;
     }
    
     //@PostMapping("/{id}/image")
